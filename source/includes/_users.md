@@ -23,6 +23,7 @@ curl -X POST \
   -d '{
       "user": {
         "email": "foo@bar.com",
+        "name": "Arthur Dent"
       }
     }'
 
@@ -32,7 +33,7 @@ EXEMPLO DE RESPOSTA
 {
   "user": {
     "id": 2,
-    "name": "foo@bar.com",
+    "name": "Arthur Dent",
     "email": "foo@bar.com",
     "auth_provider": "nexaas_id",
     "uuid": "4dc677bd-c23e-4618-911c-a6c80d5797b4",
@@ -60,7 +61,7 @@ EXEMPLO DE RETORNO DE ERROS
     Campo                       |  Obrigatório  |     Tipo                |    Formato e tamanho         |   Observações
 --------------------------------|---------------|-------------------------|------------------------------|-----------------------------------------------------------
     email                       |  Sim          |     Texto               |   Até 60 caracteres          |
-
+    name                        |  Não          |     Texto               |   Até 60 caracteres          |
 
 ## Exclusão de Usuário
 
