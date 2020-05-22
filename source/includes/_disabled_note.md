@@ -30,7 +30,7 @@ EXEMPLO DE REQUISIÇÃO
 # Inutilização de apenas um número com motivo padrão: "Erro na emissão da nota fiscal"
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/disable \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "serie": "1",
@@ -40,7 +40,7 @@ curl -X POST \
 # Inutilização de apenas um número com motivo personalizado
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/disable \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "serie": "1",
@@ -51,7 +51,7 @@ curl -X POST \
 # Inutilização de um intervalo de numeros com motivo padrão: "Erro na emissão da nota fiscal"
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/disable \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "serie": "1",
@@ -62,7 +62,7 @@ curl -X POST \
 # Inutilização de um intervalo de numeros com motivo personalizado
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/disable \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "serie": "1",
@@ -124,7 +124,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/disable/16 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -203,7 +203,7 @@ EXEMPLO DE REQUISIÇÃO
 # Inutilização de apenas um número com motivo padrão: "Erro na emissão da nota fiscal"
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce/disable \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "serie": "1",
@@ -213,7 +213,7 @@ curl -X POST \
 # Inutilização de apenas um número com motivo personalizado
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce/disable \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "serie": "1",
@@ -224,7 +224,7 @@ curl -X POST \
 # Inutilização de um intervalo de numeros com motivo padrão: "Erro na emissão da nota fiscal"
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce/disable \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "serie": "1",
@@ -235,7 +235,7 @@ curl -X POST \
 # Inutilização de um intervalo de numeros com motivo personalizado
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce/disable \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "serie": "1",
@@ -297,7 +297,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce/disable/16 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 

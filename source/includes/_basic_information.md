@@ -8,7 +8,7 @@ Para todas as requisições são necessários os seguintes Headers:
 
 <div class="api-endpoint">
   <div class="endpoint-data authentication">
-    "Authorization": "Token token=6f42433270bc61d746556b17605db1s4",<br>
+    "Authorization": "Bearer 6f42433270bc61d746556b17605db1s4",<br>
     "Content-Type": "application/json"
   </div>
 </div>  
@@ -20,7 +20,7 @@ Para todas as requisições são necessários os seguintes Headers:
 
     curl -X GET \
       https://app.production.emites.com.br/api/v1/organizations \
-      -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+      -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
       -H 'content-type: application/json' 
 
   EXEMPLO DE RESPOSTA

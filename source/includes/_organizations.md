@@ -22,7 +22,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/ \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
   -d '{
       "organization": {
@@ -142,7 +142,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/8/certificate \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
   -d '{
         "password": "senhadocertificado",
@@ -180,7 +180,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X PATCH \
   https://app.production.emites.com.br/api/v1/organizations/5 \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
   -d '{
       "organization": {
@@ -278,7 +278,7 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 curl -X DELETE \
   https://app.production.emites.com.br/api/v1/organizations/1 \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
 
 
@@ -313,7 +313,7 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
 ```
 
@@ -371,7 +371,7 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
 ```
 
