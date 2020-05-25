@@ -146,7 +146,7 @@ Grupo de informações relacionadas ao endereço do local da entrega:
 
 ## lista_autorizacao (XML: autXML)
 
-Conjunto de pessoas ou empresas autorizadas a obter o XML. Seus atributos são:
+Conjunto de pessoas ou empresas autorizadas a obter o XML. Na BA, por exemplo, é obrigatório informar o Escritório de Contabilidade na Nota Fiscal - Caso não possua informar o CNPJ da SEFAZ Bahia 13.937.073/0001-56 (validação a partir de 01/01/2016). Seus atributos são:
 
     Campo                       |  Campo no XML   |  Obrigatório  |     Tipo                |    Formato e tamanho         |   Observações
 --------------------------------|-----------------|---------------|-------------------------|------------------------------|-----------------------------------------------------------
