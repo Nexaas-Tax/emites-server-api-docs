@@ -29,7 +29,7 @@ curl -X POST \
   -d '{
       "account": {
         "name": "Nome da conta",
-        "email": "foo@bar.com"
+        "admin_email": "foo@bar.com"
       }
     }'
 
@@ -81,4 +81,4 @@ EXEMPLO DE RETORNO DE ERROS
     Campo                       |  Obrigatório  |     Tipo                |    Formato e tamanho         |   Observações
 --------------------------------|---------------|-------------------------|------------------------------|-----------------------------------------------------------
     name                        |  Sim          |     Texto               |                              |   Nome para identificação da conta.
-    email                       |  Não          |     Texto               |                              |   E-mail válido do primeiro usuário que será criado ou vinculado à nova conta.
+    admin_email                 |  Não          |     Texto               |                              |   E-mail válido do primeiro usuário que será criado ou vinculado à nova conta.
