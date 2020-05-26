@@ -20,7 +20,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/tax_calculator \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
 	"nfe": {
@@ -416,7 +416,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/tax_calculator \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
 	"nfce": {

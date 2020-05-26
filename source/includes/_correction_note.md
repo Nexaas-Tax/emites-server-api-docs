@@ -45,7 +45,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X PATCH \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/10990/correction \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "correcao": "Carta correcao teste"
@@ -54,7 +54,7 @@ curl -X PATCH \
 # Usando a chave de acesso
 curl -X PATCH \
   https://app.emites.com.br/api/v1/organizations/11/nfe/35181160619202003910551010000000321613631381/correction \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "correcao": "Carta correcao teste"

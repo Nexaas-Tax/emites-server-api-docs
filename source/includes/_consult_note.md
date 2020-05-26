@@ -63,7 +63,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe_batch \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
         "nfe_batch": {
@@ -228,7 +228,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/350 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -257,7 +257,7 @@ EXEMPLO DE REQUISIÇÃO USANDO A CHAVE DE ACESSO
 
 curl -X GET \
   https://app.emites.com.br/api/v1/organizations/11/nfe/53190222769530000131556110000002001616311935 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -292,7 +292,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe_batch \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
         "nfe_batch": {
@@ -456,7 +456,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/351 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -490,7 +490,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe_batch \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
         "nfe_batch": {
@@ -654,7 +654,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/351 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -688,7 +688,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe_batch \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
         "nfe_batch": {
@@ -852,7 +852,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfe/352 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -887,7 +887,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce_batch \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
         "nfce_batch": {
@@ -999,7 +999,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce/109 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -1028,7 +1028,7 @@ EXEMPLO DE REQUISIÇÃO USANDO CHAVE DE ACESSO
 
 curl -X GET \
   https://app.emites.com.br/api/v1/organizations/11/nfce/53190222769530000131657170000000501127125918 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -1063,7 +1063,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce_batch \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
         "nfce_batch": {
@@ -1175,7 +1175,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce/110 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -1209,7 +1209,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce_batch \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
         "nfce_batch": {
@@ -1321,7 +1321,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce/110 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 
@@ -1355,7 +1355,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce_batch \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json' \
   -d '{
         "nfce_batch": {
@@ -1465,7 +1465,7 @@ EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
   https://app.production.emites.com.br/api/v1/organizations/11/nfce/111 \
-  -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+  -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
   -H 'content-type: application/json'
 
 

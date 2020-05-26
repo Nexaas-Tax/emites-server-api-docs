@@ -22,13 +22,13 @@ EXEMPLO DE REQUISIÇÃO
 # Motivo padrão: "Cancelamento NF-e"
 curl -X PATCH \
     https://app.production.emites.com.br/api/v1/organizations/11/nfe/10990/cancel \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
 
 # Motivo personalizado
 curl -X PATCH \
     https://app.production.emites.com.br/api/v1/organizations/11/nfe/10990/cancel \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -d '{
           "motivo": "Desistência do cliente"
         }'
@@ -36,7 +36,7 @@ curl -X PATCH \
 # Usando a chave de acesso
 curl -X PATCH \
     https://app.emites.com.br/api/v1/organizations/11/nfe/53190222769530000131556110000002041100341123/cancel \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
 
 EXEMPLO DE RESPOSTA
 
@@ -105,13 +105,13 @@ EXEMPLO DE REQUISIÇÃO
 # Motivo padrão: "Cancelamento NFC-e"
 curl -X PATCH \
     https://app.production.emites.com.br/api/v1/organizations/11/nfce/10990/cancel \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
 
 # Motivo personalizado
 curl -X PATCH \
     https://app.production.emites.com.br/api/v1/organizations/11/nfce/10990/cancel \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -d '{
           "motivo": "Desistência do cliente"
         }'
@@ -119,7 +119,7 @@ curl -X PATCH \
 # Usando a chave de acesso
 curl -X PATCH \
     https://app.emites.com.br/api/v1/organizations/11/nfce/53190222769530000131657170000000551642238289/cancel \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
 
 
 EXEMPLO DE RESPOSTA
@@ -191,7 +191,7 @@ EXEMPLO DE REQUISIÇÃO
 # Motivo padrão: "Cancelamento por substituição devido duplicidade de emissão para a mesma operação fiscal"
 curl -X PATCH \
     https://app.production.emites.com.br/api/v1/organizations/11/nfe/53190222769530000131556110000002041100341123/replacement_cancel \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
           "ch_nfe_ref": "35191135402759007600551130000205421006450377"
@@ -200,7 +200,7 @@ curl -X PATCH \
 # Motivo personalizado
 curl -X PATCH \
     https://app.production.emites.com.br/api/v1/organizations/53190222769530000131556110000002041100341123/nfe/10990/replacement_cancel \
-    -H 'authorization: Token token=6f42433270bc61d746556b17605db1s4' \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -d '{
           "motivo": "Cancelamento por substituição",
           "ch_nfe_ref": "35191135402759007600551130000205421006450377"

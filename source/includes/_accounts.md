@@ -23,8 +23,8 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
-  http://localhost:3000/api/v1/accounts/ \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  https://app.production.emites.com.br/api/v1/accounts/ \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
   -d '{
       "account": {

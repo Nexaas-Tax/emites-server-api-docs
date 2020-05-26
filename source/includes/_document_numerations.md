@@ -21,8 +21,8 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
-  http://localhost:3000/api/v1/organizations/1/nfe_numerations \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  https://app.production.emites.com.br/api/v1/organizations/1/nfe_numerations \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json'
 
 EXEMPLO DE RESPOSTA
@@ -64,8 +64,8 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
-  http://localhost:3000/api/v1/organizations/1/nfe_numerations \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  https://app.production.emites.com.br/api/v1/organizations/1/nfe_numerations \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
   -d '{
       "nfe_numeration": {
@@ -135,8 +135,8 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
-  http://localhost:3000/api/v1/organizations/1/nfe_numerations/1 \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  https://app.production.emites.com.br/api/v1/organizations/1/nfe_numerations/1 \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json'
 
 EXEMPLO DE RESPOSTA
@@ -169,8 +169,8 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 
 curl -X DELETE \
-  http://localhost:3000/api/v1/organizations/1/nfe_numerations/1 \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  https://app.production.emites.com.br/api/v1/organizations/1/nfe_numerations/1 \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
 ```
 <aside class="notice">
@@ -213,8 +213,8 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
-  http://localhost:3000/api/v1/organizations/1/nfce_numerations \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  https://app.production.emites.com.br/api/v1/organizations/1/nfce_numerations \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json'
 
 EXEMPLO DE RESPOSTA
@@ -258,8 +258,8 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 
 curl -X POST \
-  http://localhost:3000/api/v1/organizations/1/nfce_numerations \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  https://app.production.emites.com.br/api/v1/organizations/1/nfce_numerations \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
   -d '{
       "nfce_numeration": {
@@ -333,8 +333,8 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 
 curl -X GET \
-  http://localhost:3000/api/v1/organizations/1/nfce_numerations/1 \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  https://app.production.emites.com.br/api/v1/organizations/1/nfce_numerations/1 \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json'
 
 EXEMPLO DE RESPOSTA
@@ -368,8 +368,8 @@ Veja a seguir um exemplo do corpo da requisição:
 EXEMPLO DE REQUISIÇÃO
 
 curl -X DELETE \
-  http://localhost:3000/api/v1/organizations/1/nfce_numerations/1 \
-  -H 'authorization: Token token=c3b1164e8ae17f6d9712730ec75be6da' \
+  https://app.production.emites.com.br/api/v1/organizations/1/nfce_numerations/1 \
+  -H 'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da' \
   -H 'content-type: application/json' \
 ```
 
