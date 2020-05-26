@@ -24,11 +24,8 @@ curl -X POST \
   -H 'content-type: application/json' \
   -d '{
 	"nfe_batch": {
-        "lote": 1,
         "serie": 22,
         "engine_de_calculo": "nexaas",
-        "sincronicidade": 0,
-        "uf": 53,
         "nfes": [
             {
                 "cliente": {
@@ -1185,11 +1182,8 @@ curl -X POST \
   -H 'content-type: application/json' \
   -d '{
 	"nfce_batch": {
-        "lote": "1",
         "serie": "233",
         "engine_de_calculo": "nexaas",
-        "sincronicidade": "0",
-        "uf": "53",
         "nfces": [
             {
                 "dados_gerais": {
