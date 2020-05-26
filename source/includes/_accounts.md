@@ -29,7 +29,8 @@ curl -X POST \
   -d '{
       "account": {
         "name": "Nome da conta",
-        "admin_email": "foo@bar.com"
+        "admin_email": "foo@bar.com",
+        "admin_name": "Foo Bar"
       }
     }'
 
@@ -49,7 +50,7 @@ EXEMPLO DE RESPOSTA
     "account_id": 1,
     "admin": {
       "id": 6,
-      "name": "foo@bar.com",
+      "name": "Foo Bar",
       "email": "foo@bar.com",
       "auth_provider": "nexaas_id",
       "created_at": "2019-06-24T15:58:51.855-03:00",
@@ -82,3 +83,4 @@ EXEMPLO DE RETORNO DE ERROS
 --------------------------------|---------------|-------------------------|------------------------------|-----------------------------------------------------------
     name                        |  Sim          |     Texto               |                              |   Nome para identificação da conta.
     admin_email                 |  Não          |     Texto               |                              |   E-mail válido do primeiro usuário que será criado ou vinculado à nova conta.
+    admin_name                  |  Não          |     Texto               |                              |   Nome para o primeiro usuário que será criado ou vinculado à nova conta.
