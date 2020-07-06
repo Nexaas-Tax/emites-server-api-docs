@@ -40,7 +40,7 @@ Contém informações gerais e metadados sobre a NF-e. Seus atributos são:
     tipo_operacao               |   tpNF          |  Sim          |     Numérico            |    1 dígito                  |   Tipo de Operação, sendo 0 = Entrada e 1 = Saída.
     destino_operacao            |   idDest        |  Sim          |     Numérico            |    1 dígito                  |   Identificador de Local de destino da operação (1 - Interna; 2 - Interestadual; 3 - Exterior).
     natureza_operacao           |   natOp         |  Sim          |     Texto  e/ou número  |    1 a 60 caracteres         |   Informar a natureza da operação de que decorrer a saída ou a entrada, tais como venda, compra, transferência, devolução, importação, consignação, remessa (para fins de demonstração, de industrialização ou outra), conforme previsto na alínea 'i', inciso I, do art. 19 do Convênio s/nº de 15 de dezembro de 1970.
-    codigo_natureza_operacao    |       -         |  Condicional          |     Texto               |    3 caracteres              |   <strong>* Quando existir engine de cálculo o campo será obrigatório.</strong><br><br>Código da natureza da operação utilizado das Regras de Tributação<br>001 = Compra para Comercialização;<br>002 = Venda de Mercadoria;<br>005 = Devolução de Compra de Mercadoria;<br>006 = Remessa para Conserto;<br>012 = Devolução de Venda de Mercadoria;
+    codigo_natureza_operacao    |       -         |  Condicional          |     Texto               |    3 caracteres              |   <strong>* Quando existir engine de cálculo o campo será obrigatório.</strong><br><br>Código da natureza da operação utilizado nas Regras de Tributação:<br><br>001 = Compra;<br>002 = Venda;<br>003 = Transferência;<br>004 = Devolução;<br>005 = Importação;<br>006 = Exportação;<br>007 = Remessa;<br>008 = Retorno;<br>009 = Outras Entradas;<br>010 = Outras Saídas;<br>011 = Serviços - ISSQN;<br>012 = Lançamento de Crédito;<br>013 = Recebimento;<br>014 = Ressarcimento;<br><br>OBS.: Se o <strong>engine_de_cálculo</strong> for diferente de <trong>nexaas</strong>, preencher com o código do respectivo TaxEngine.
     indicador_consumidor_final  |   indFinal      |  Sim          |     Numérico            |    1 dígito                  |   Indica se a NF-e foi emitida para consumidor final, sendo 0 = Não e 1 = Sim.
     indicador_presenca          |   indPres       |  Sim          |     Numérico            |    1 dígito                  |   Indicador de presença do comprador no estabelecimento comercial no momento da operação. Seleção entre:<br>0 = Não se aplica (por exemplo, Nota Fiscal complementar ou de ajuste);<br>1 = Operação presencial;<br>2 = Operação não presencial, pela Internet;<br>3   = Operação não presencial, Teleatendimento;<br>4 = NFC-e em operação com entrega a domicílio;<br>9 = Operação não presencial, outros.<br>
     finalidade_nfe              |   finNFe        |  Sim          |     Numérico            |    1 dígito                  |   Finalidade de emissão da NF-e. Seleção entre:   1 - NF-e normal   2 - NF-e complementar   3 - NF-e de ajuste
@@ -64,7 +64,7 @@ Contém informações sobre o destinatário da aquisição dos produtos do emite
     inscricao_municipal         |   IM            |  Não          |  Texto                  |  Até 15 caracteres           |
     indicador_inscricao_estadual|   indIEDest     |  Sim          |  Numérico               |  1 dígito                    |  Indica se o destinatário é contribuinte do ICMS. Seleção entre:<br>1 = Contribuinte ICMS (informar a IE do destinatário);<br> 2  = Contribuinte isento de Inscrição no cadastro de Contribuintes do ICMS;<br>9 = Não Contribuinte, que pode ou não possuir Inscrição Estadual no Cadastro de Contribuintes do ICMS.<br><strong>Para NFC-e esse campo sempre terá o valor 9, por isso pode ser ignorado.<strong>
     email                       |   email         |  Não          |  Texto                  |  Até 60 caracteres           |
-    regime_tributario_diferenciado         |   -            |  Não          |  Texto                  |  De 3 a 4 caracteres           |  Trata-se de um atributo específico para uso do engine de cálculo TaxRules da TaxWeb. <br>Preencher se a organização não tiver nenhum regime tributário diferenciado. <br><strong>Valores válidos: LFEM, LFDES e ISENLF.</strong><br><br><i>É importante que o regime tributário diferenciado (emitente) também esteja configurado na organização.</i>
+    regime_tributario_diferenciado         |   -            |  Não          |  Texto                  |  De 3 a 4 caracteres           |  Regime tributário diferenciado do emitente utilizado nas Regras de Tributação:<br><br>001 = Repes;<br>002 = Recap;<br>003 = Padis;<br>004 = Patvd;<br>005 = Reidi;<br>006 = Repenec;<br>007 = Reicomp;<br>008 = Retaero;<br>009 = Recine;<br>010 = Resíduos Sólidos;<br>011 = Recopa;<br>012 = Copa do Mundo;<br>013 = Retid;<br>014 = Repnbl-Redes;<br>015 = Reif;<br>016 = Olimpíadas;<br>017 = TaxWeb - LFDES;<br>018 = TaxWeb - LFEM;<br>019 = TaxWeb - ISENLF;<br>020 = ICMS Substituto Tributário;<br>021 = ICMS Substituído Tributário<br><br>OBS.: Se o <strong>engine_de_cálculo</strong> for diferente de <strong>nexaas</strong>, preencher com o código do respectivo TaxEngine. É importante que o regime tributário diferenciado do emitente também esteja configurado na organização.
     cd_atividade_economica      |   -            |  Não           |  Numérico               |  -                           |  Trata-se de um atributo específico (cdAtividadeEconomica) para uso do engine de cálculo TaxRules da TaxWeb
 
 ### endereco (XML: enderDest)
@@ -192,7 +192,7 @@ Contém informações sobre os produtos contidos na NF-e. No XML, o nó  prod  �
     producao_escala             |  indEscala      |  Não          |     Texto               |  1 dígito                         |  S - Produzido em Escala Relevante;<br>N – Produzido em Escala NÃO Relevante.
     cnpj_fabricante_mercadoria  |  CNPJFab        |  Não          |     Numérico            |  14 dígitos                       |  S - Produzido em Escala Relevante;<br>N – Produzido em Escala NÃO Relevante.
     codigo_beneficio_fiscal     |  cBenef         |  Não          |     Texto               |  10 dígitos                       |  Código de Benefício Fiscal utilizado pela UF, aplicado ao item.
-    aplicacao     |     -     |  Não          |     Texto               |  1 dígito                       |  Aplicação do Produto (<i>Trata-se de um atributo específico para uso do engine de cálculo TaxRules da TaxWeb.</i>). Seleção entre:<br>I - Industrialização<br>C - Comercialização<br>U - Uso e Consumo<br>A - Ativo Imobilizado
+    aplicacao     |     -     |  Não          |     Texto               |  Texto                     |  Aplicação do produto utilizado nas Regras de Tributação:<br><br>001 = Amostra Grátis<br>;002 = Anulação de Valor<br>;003 = Aquisição<br>;004 = Armazenagem<br>;005 = Ativo Imobilizado<br>;006 = Ato Cooperativo<br>;007 = Baixa de Estoque a título de encerramento de atividade<br>;008 = Baixa de Estoque a título de perda, roubo ou deteriorização<br>;009 = Bonificação, Doação ou Brinde<br>;010 = Comercialização<br>;011 = Comodato<br>;012 = Compra<br>;013 = Conserto ou Reparo<br>;014 = Consignação<br>;015 = Conta e Ordem de Terceiros<br>;016 = Crédito Acumulado de ICMS<br>;017 = Demonstração<br>;018 = Distribuição<br>;019 = Embalagem<br>;020 = Exposição ou Feira<br>;021 = ICMS retido por ST<br>;022 = Industrialização<br>;023 = Locação<br>;024 = Operação fora estabelecimento<br>;025 = Prestação<br>;026 = Regime Especial Aduaneiro de Admissão temporária<br>;027 = Saldo Credor de ICMS<br>;028 = Saldo Devedor de ICMS<br>;029 = Uso e Consumo<br>;030 = Vasilhame ou Sacaria<br>;031 = Venda<br>;032 = Transferência<br>;033 = Simples Faturamento<br>;099 = Outros<br><br>OBS.: Se o <strong>engine_de_cálculo</strong> for diferente de <strong>nexaas</strong>, preencher com o código do respectivo TaxEngine.
     fabricacao     |     -     |  Não          |     Numérico               |  1 dígito                       |  Indica onde ocorreu a fabricação do produto (<i>Trata-se de um atributo específico para uso do engine de cálculo TaxRules da TaxWeb.</i>). Seleção entre:<br>0 - Própria<br>1 - Terceiros
     indFarmaciaPopular     |     -     |  Não          |     Texto               |  1 dígito                       |  (<i>Trata-se de um atributo específico para uso do engine de cálculo TaxRules da TaxWeb.</i>). Seleção entre:<br>S - Sim<br>N - Não
     praticaRepasse     |     -     |  Não          |     Texto               |  1 dígito                       |  (<i>Trata-se de um atributo específico para uso do engine de cálculo TaxRules da TaxWeb.</i>). Seleção entre:<br>S - Sim<br>N - Não
@@ -222,7 +222,7 @@ Informações relacionadas ao ICMS. Os atributos são variáveis de acordo com a
     Campo                       |  Campo no XML   |  Obrigatório  |     Tipo                |    Formato e tamanho               |   Observações
 --------------------------------|-----------------|---------------|-------------------------|------------------------------------|-----------------------------------------------------------
 situacao_tributaria             |  CST            |  Sim          |     Numérico            |    2 dígitos                       |
-codigo_origem_produto           |  orig           |  Sim          |     Numérico            |    1 dígito                        |  Origem da mercadoria. Seleção entre:<br>  0 = Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;  <br>1 = Estrangeira - Importação direta, exceto a indicada no código 6;  <br>2 = Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;  <br>3 = Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%;  <br>4 = Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;  <br>5 = Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%;  <br>6 = Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  <br>7 = Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural.  <br>8 = Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%.
+codigo_origem_produto           |  orig           |  Sim          |     Numérico            |    1 dígito                        |  Origem da mercadoria. Seleção entre:<br>0 = Nacional, exceto as indicadas nos códigos 3, 4, 5 e 8;<br>1 = Estrangeira - Importação direta, exceto a indicada no código 6;  <br>2 = Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7;<br>3 = Nacional, mercadoria ou bem com Conteúdo de Importação superior a 40% e inferior ou igual a 70%;<br>4 = Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam as legislações citadas nos Ajustes;<br>5 = Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%;  <br>6 = Estrangeira - Importação direta, sem similar nacional, constante em lista da CAMEX e gás natural;  <br>7 = Estrangeira - Adquirida no mercado interno, sem similar nacional, constante lista CAMEX e gás natural.<br>8 = Nacional, mercadoria ou bem com Conteúdo de Importação superior a 70%.
 
 ### ICMS interestadual (XML: ICMSUFDest)
 
@@ -267,7 +267,7 @@ Tributada integralmente.
 
   Campo no XML                | XML           |  Obrigatório  |  Tipo      |  Formato e tamanho                 | Observações
 ------------------------------|---------------|---------------|------------|------------------------------------|------------
-  modalidade_base_calculo     | modBC         |  Sim          |  Numérico  |  1 dígito                          | 0=Margem Valor Agregado (%);  <br>1=Pauta (Valor);  <br>2=Preço Tabelado Máx. (valor);  <br>3=Valor da operação.
+  modalidade_base_calculo     | modBC         |  Sim          |  Numérico  |  1 dígito                          | 0 = Margem Valor Agregado (%);  <br>1 = Pauta (Valor);<br>2 = Preço Tabelado Máx. (valor);<br>3 = Tributada integralmenteValor da operação.
   valor_base_calculo          | vBC           |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais  |
   aliquota_icms               | pICMS         |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais  |
   valor_icms                  | vICMS         |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais  |
@@ -276,15 +276,15 @@ Tributada integralmente.
 
 ### situacao_tributaria = 10
 
-Tributada com cobrança de ICMS por ST.
+Tributada e com cobrança do ICMS por substituição tributária.
 
   Campo                         |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
-  modalidade_base_calculo       |  modBC        |  Sim          |  Numérico  |  Numérico                           | 1 dígito 0=Margem Valor Agregado (%); <br>1=Pauta (Valor); <br>2=Preço Tabelado Máx. (valor); <br>3=Valor da operação.
+  modalidade_base_calculo       |  modBC        |  Sim          |  Numérico  |  1 dígito                           | 0 = Margem Valor Agregado (%);<br>1 = Pauta (Valor);<br>2 = Preço Tabelado Máx. (valor);<br>3 = Valor da operação.
   valor_base_calculo            |  vBC          |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
   aliquota_icms                 |  pICMS        |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
   valor_icms                    |  vICMS        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
-  modalidade_base_calculo_st    |  modBCST      |  Sim          |  Numérico  |  1 dígito                           | 0=Preço tabelado ou máximo sugerido; <br>1=Lista Negativa (valor); <br>2=Lista Positiva (valor); <br>3=Lista Neutra (valor);  <br>4=Margem Valor Agregado (%); <br>5=Pauta (valor).
+  modalidade_base_calculo_st    |  modBCST      |  Sim          |  Numérico  |  1 dígito                           | 0 = Preço tabelado ou máximo sugerido;<br>1 = Lista Negativa (valor);<br>2 = Lista Positiva (valor);<br>3 = Lista Neutra (valor);<br>4 = Margem Valor Agregado (%); <br>5 = Pauta (valor).
   valor_base_calculo_st         |  vBCST        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
   perc_reducao_base_calculo_st  |  pRedBCST     |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
   perc_mva_icms_st              |  pMVAST       |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
@@ -316,19 +316,19 @@ perc_reducao_base_calculo       |  pRedBC       |  Sim          |  Decimal   |  
 aliquota_icms                   |  pICMS        |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
 valor_icms                      |  vICMS        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
 valor_icms_desonerado           |  vICMSDeson   |  Não          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
-motivo_desoneracao              |  motDesICMS   |  Não          |  Numérico  |  2 dígitos                          |  Informar o motivo da desoneração: <br>1 = Táxi<br> 3 = Produto Agropecuário <br>4 = Frotista/Locadora <br>5 = Diplomático/Consular <br>6 = Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio <br>7 = SUFRAMA <br>8 = Venda a Órgão Público <br>9 = Outros <br>10 = Deficiente Condutor <br>11 = Deficiente Não Condutor <br>12 = Órgão de fomento e desenvolvimento agropecuário
+motivo_desoneracao              |  motDesICMS   |  Não          |  Numérico  |  2 dígitos                          |  Informar o motivo da desoneração:<br>1 = Táxi;<br>3 = Produtor Agropecuário;<br>4 = Frotista/Locadora;<br>5 = Diplomático/Consular;<br>6 = Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 – CONTRAN e suas alterações);<br>7 = SUFRAMA;<br>8 = Venda a Órgão Público;<br>9 = Outros (NT 2011/004);<br>10 = Deficiente Condutor (Convênio ICMS 38/12);<br>11 = Deficiente Não Condutor (Convênio ICMS 38/12);<br>12 = Órgão de fomento e desenvolvimento agropecuário;<br>16 = Olimpíadas Rio 2016 (NT 2015.002)<br>90 - Solicitado pelo Fisco (NT 2016/002) (Revogada a partir da versão 3.10 a possibilidade de usar o motivo 2 - Deficiente Físico);
 valor_base_calculo_fcp          | vBCFCP        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
 aliquota_fcp                    | pFCP          |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
 valor_fcp                       | vFCP          |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
 
 ### situacao_tributaria = 30
 
-Isenta e não tributada e com cobrança de ICMS por ST.
+Isenta ou não tributada e com cobrança do ICMS por substituição tributária.
 
   Campo                         |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
 valor_icms_desonerado           |  vICMSDeson   |  Não          |  Decimal   | Até 13 dígitos, 2 casas decimais    |
-motivo_desoneracao              |  motDesICMS   |  Não          |  Numérico  | 2 dígitos                           |  Informar o motivo da desoneração: <br>1 = Táxi <br>3 = Produto Agropecuário <br>4 = Frotista/Locadora <br>5 = Diplomático/Consular <br>6 = Utilitários e  Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio <br>7 = SUFRAMA <br>8 = Venda a Órgão Público <br>9 = Outros <br>10 = Deficiente Condutor <br>11 = Deficiente Não Condutor <br>12 = Órgão de fomento e desenvolvimento agropecuário
+motivo_desoneracao              |  motDesICMS   |  Não          |  Numérico  | 2 dígitos                           |  Informar o motivo da desoneração:<br>1 = Táxi;<br>3 = Produtor Agropecuário;<br>4 = Frotista/Locadora;<br>5 = Diplomático/Consular;<br>6 = Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 – CONTRAN e suas alterações);<br>7 = SUFRAMA;<br>8 = Venda a Órgão Público;<br>9 = Outros. (NT 2011/004);<br>10 = Deficiente Condutor (Convênio ICMS 38/12);<br>11 = Deficiente Não Condutor (Convênio ICMS 38/12);<br>12 = Órgão de fomento e desenvolvimento agropecuário;<br>16 = Olimpíadas Rio 2016 (NT 2015.002)<br>90 - Solicitado pelo Fisco (NT 2016/002) (Revogada a partir da versão 3.10 a possibilidade de usar o motivo 2 - Deficiente Físico);
 modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico   | 1 dígito                           |  0=Preço tabelado ou máximo sugerido;<br>1=Lista Negativa (valor);<br>2=Lista Positiva (valor);<br>3=Lista Neutra (valor);<br>4=Margem Valor Agregado (%);<br>5=Pauta (valor).
 valor_base_calculo_st           |  vBCST      |  Sim          |  Decimal   | Até 13 dígitos, 2 casas decimais    |
 perc_reducao_base_calculo_st    |  pRedBCST   |  Não          |  Decimal   | Até 3 dígitos, 4 casas decimais     |
@@ -348,7 +348,7 @@ valor_fcp_st                    | vFCPST      |  Sim          |  Decimal   | At�
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
 valor_icms_desonerado           |  vICMSDeson   |  Não          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
-motivo_desoneracao              |  motDesICMS   |  Não          |  Numérico  |  2 dígitos                          |  Informar o motivo da desoneração:<br>1 = Táxi<br>3 = Produto Agropecuário<br>4 = Frotista/Locadora<br>5 = Diplomático/Consular<br>6 = Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio<br>7 = SUFRAMA<br>8 = Venda a Órgão Público<br>9 = Outros<br>10 = Deficiente Condutor<br>11 = Deficiente Não Condutor<br>12 = Órgão de fomento e desenvolvimento agropecuário<br>
+motivo_desoneracao              |  motDesICMS   |  Não          |  Numérico  |  2 dígitos                          |  Informar o motivo da desoneração:<br>1 = Táxi;<br>3 = Produtor Agropecuário;<br>4 = Frotista/Locadora;<br>5 = Diplomático/Consular;<br>6 = Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 – CONTRAN e suas alterações);<br>7 = SUFRAMA;<br>8 = Venda a Órgão Público;<br>9 = Outros. (NT 2011/004);<br>10 = Deficiente Condutor (Convênio ICMS 38/12);<br>11 = Deficiente Não Condutor (Convênio ICMS 38/12);<br>12 = Órgão de fomento e desenvolvimento agropecuário;<br>16 = Olimpíadas Rio 2016 (NT 2015.002)<br>90 - Solicitado pelo Fisco (NT 2016/002) (Revogada a partir da versão 3.10 a possibilidade de usar o motivo 2 - Deficiente Físico);
 
 ### situacao_tributaria = 41 e ICMSST devido para a UF de destino
 
@@ -362,11 +362,11 @@ valor_icmsst_retido_destino     |  vICMSSTDest  |  Sim          |  Decimal   |  
 
 ### situacao_tributaria = 51
 
-Diferido.
+Diferimento.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
-modalidade_base_calculo         |  modBC        |  Sim          |  Numérico  |  1 dígito                           |  0=Margem Valor Agregado (%);<br>1=Pauta (Valor);<br>2=Preço Tabelado Máx. (valor);<br>3=Valor da operação.<br>
+modalidade_base_calculo         |  modBC        |  Sim          |  Numérico  |  1 dígito                           |  0 = Margem Valor Agregado (%);<br>1 = Pauta (Valor);<br>2 = Preço Tabelado Máx. (valor);<br>3 = Valor da operação.<br>
 valor_base_calculo              |  vBC          |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
 perc_reducao_base_calculo       |  pRedBC       |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
 aliquota_icms                   |  pICMS        |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
@@ -380,7 +380,7 @@ valor_fcp                       | vFCP          |  Sim          |  Decimal   |  
 
 ### situacao_tributaria = 60
 
-Cobrado anteriormente por ST.
+ICMS cobrado anteriormente por substituição tributária.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
@@ -394,7 +394,7 @@ valor_fcp_st_retido              | vFCPSTRet   | Sim          |  Decimal   |  At
 
 ### situacao_tributaria = 70 e 90
 
-70 = Com redução da base de cálculo e cobrança por ST
+70 = Com redução de base de cálculo e cobrança do ICMS por substituição tributária
 90 = Outras
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
@@ -405,7 +405,7 @@ perc_reducao_base_calculo       |  pRedBC       |  Sim          |  Decimal   |  
 aliquota_icms                   |  pICMS        |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
 valor_icms                      |  vICMS        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
 valor_icms_desonerado           |  vICMSDeson   |  Não          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
-motivo_desoneracao              |  motDesICMS   |  Não          |  Numérico  |  2 dígitos                          |  Informar o motivo da desoneração: <br>1 = Táxi<br>3 = Produto Agropecuário<br>4 = Frotista/Locadora<br>5 = Diplomático/Consular<br>6 = Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio<br>7 = SUFRAMA<br>8 = Venda a Órgão Público<br>9 = Outros<br>10 = Deficiente Condutor<br>11 = Deficiente Não Condutor<br>12 = Órgão de fomento e desenvolvimento agropecuário<br>
+motivo_desoneracao              |  motDesICMS   |  Não          |  Numérico  |  2 dígitos                          |  Informar o motivo da desoneração:<br>1 = Táxi;<br>3 = Produtor Agropecuário;<br>4 = Frotista/Locadora;<br>5 = Diplomático/Consular;<br>6 = Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 – CONTRAN e suas alterações);<br>7 = SUFRAMA;<br>8 = Venda a Órgão Público;<br>9 = Outros. (NT 2011/004);<br>10 = Deficiente Condutor (Convênio ICMS 38/12);<br>11 = Deficiente Não Condutor (Convênio ICMS 38/12);<br>12 = Órgão de fomento e desenvolvimento agropecuário;<br>16 = Olimpíadas Rio 2016 (NT 2015.002)<br>90 = Solicitado pelo Fisco (NT 2016/002) (Revogada a partir da versão 3.10 a possibilidade de usar o motivo 2 - Deficiente Físico);
 modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico  |  1 dígito                           |  0=Preço tabelado ou máximo sugerido;<br>1=Lista Negativa (valor);<br>2=Lista Positiva (valor);<br>3=Lista Neutra (valor);<br>4=Margem Valor Agregado (%);<br>5=Pauta (valor).<br>
 valor_base_calculo_st           |  vBCST        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
 perc_reducao_base_calculo_st    |  pRedBCST     |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
@@ -428,7 +428,7 @@ uf_icmsst_devido                |  UFST         |  Sim          |  Texto     |  
 
 ### situacao_tributaria = 101
 
-Tributada com permissão de crédito.
+Tributada pelo Simples Nacional com permissão de crédito.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
@@ -438,7 +438,7 @@ credito_icms_simples_nacional   |  vCredICMSSN  |  Sim          |  Decimal   |  
 
 ### situacao_tributaria = 102
 
-Tributada sem permissão de crédito.
+Tributada pelo Simples Nacional sem permissão de crédito.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
@@ -446,7 +446,7 @@ situacao_simples_nacional       |  CSOSN        |   Sim         |  Numérico  | 
 
 ### situacao_tributaria = 103
 
-Isenção de ICMS.
+Isenção do ICMS no Simples Nacional para faixa de receita bruta.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
@@ -454,14 +454,14 @@ situacao_simples_nacional       |  CSOSN        |  Sim          |  Numérico  | 
 
 ### situacao_tributaria = 201
 
-Tributada com permissão de crédito e com cobrança de ICMS por ST.
+Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS por Substituição Tributária.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
 situacao_simples_nacional       |  CSOSN        |  Sim          |  Numérico  |  3 dígitos                          |
 aliquota_icms_simples_nacional  |  pCredSN      |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
 credito_icms_simples_nacional   |  vCredICMSSN  |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
-modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico  |  1 dígito                           |  0=Preço tabelado ou máximo sugerido;<br>1=Lista Negativa (valor);<br>2=Lista Positiva (valor);<br>3=Lista Neutra (valor);<br>4=Margem Valor Agregado (%);<br>5=Pauta (valor).
+modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico  |  1 dígito                           |  0 = Preço tabelado ou máximo sugerido;<br>1 = Lista Negativa (valor);<br>2 = Lista Positiva (valor);<br>3 = Lista Neutra (valor);<br>4 = Margem Valor Agregado (%);<br>5 = Pauta (valor).
 valor_base_calculo_st           |  vBCST        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
 perc_reducao_base_calculo_st    |  pRedBCST     |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
 perc_mva_icms_st                |  pMVAST       |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
@@ -475,12 +475,12 @@ credito_icms_simples_nacional   |  vCredICMSSN  |  Sim          |  Decimal   |  
 
 ### situacao_tributaria = 202
 
-Tributada sem permissão de crédito e com cobrança de ICMS por ST.
+Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do ICMS por Substituição Tributária.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
 situacao_simples_nacional       |  CSOSN        |  Sim          |  Numérico  |  3 dígitos
-modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico  |  1 dígito                           |  0=Preço tabelado ou máximo sugerido;<br>1=Lista Negativa (valor);<br>2=Lista Positiva (valor);<br>3=Lista Neutra (valor);<br>4=Margem Valor Agregado (%);<br>5=Pauta (valor).
+modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico  |  1 dígito                           |  0 = Preço tabelado ou máximo sugerido;<br>1 = Lista Negativa (valor);<br>2 = Lista Positiva (valor);<br>3 = Lista Neutra (valor);<br>4 = Margem Valor Agregado (%);<br>5 = Pauta (valor).
 valor_base_calculo_st           |  vBCST        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais   |
 perc_reducao_base_calculo_st    |  pRedBCST     |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
 perc_mva_icms_st                |  pMVAST       |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais    |
@@ -492,12 +492,12 @@ valor_fcp_st                    |  vFCPST       |  Sim          |  Decimal   |  
 
 ### situacao_tributaria = 203
 
-Isenção de ICMS pela faixa de receita bruta e com cobrança de ICMS por ST.
+Isenção do ICMS nos Simples Nacional para faixa de receita bruta e com cobrança do ICMS por Substituição Tributária.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
 situacao_simples_nacional       |  CSOSN        |  Sim          |  Numérico  |  3 dígitos
-modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico  |  1 dígito                           |  0=Preço tabelado ou máximo sugerido;<br>1=Lista Negativa (valor);<br>2=Lista Positiva (valor);<br>3=Lista Neutra (valor);<br>4=Margem Valor Agregado (%);<br>5=Pauta (valor).
+modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico  |  1 dígito                           |  0 = Preço tabelado ou máximo sugerido;<br>1 = Lista Negativa (valor);<br>2 = Lista Positiva (valor);<br>3 = Lista Neutra (valor);<br>4 = Margem Valor Agregado (%);<br>5 = Pauta (valor).
 valor_base_calculo_st           |  vBCST        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais
 perc_reducao_base_calculo_st    |  pRedBCST     |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais
 perc_mva_icms_st                |  pMVAST       |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais
@@ -517,7 +517,7 @@ situacao_simples_nacional       |  CSOSN        |  Sim          |  Numérico  | 
 
 ### situacao_tributaria = 400
 
-Não tributada
+Não tributada pelo Simples Nacional.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
@@ -525,7 +525,7 @@ situacao_simples_nacional       |  CSOSN        |  Sim          |  Numérico  | 
 
 ### situacao_tributaria = 500
 
-ICMS cobrado anteriormente por ST ou antecipação.
+ICMS cobrado anteriormente por substituição tributária (substituído) ou por antecipação.
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                  |  Observações
 --------------------------------|---------------|---------------|------------|-------------------------------------|------------
@@ -547,12 +547,12 @@ Outros.
 situacao_simples_nacional       |  CSOSN        |  Sim          |  Numérico  |  3 dígitos
 aliquota_icms_simples_nacional  |  pCredSN      |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais
 credito_icms_simples_nacional   |  vCredICMSSN  |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais
-modalidade_base_calculo         |  modBC        |  Sim          |  Numérico  |  1 dígito                           |  0=Margem Valor Agregado (%);<br>1=Pauta (Valor);<br>2=Preço Tabelado Máx. (valor);<br>3=Valor da operação.
+modalidade_base_calculo         |  modBC        |  Sim          |  Numérico  |  1 dígito                           |  0 = Margem Valor Agregado (%);<br>1 = Pauta (Valor);<br>2 = Preço Tabelado Máx. (valor);<br>3 = Valor da operação.
 valor_base_calculo              |  vBC          |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais
 perc_reducao_base_calculo       |  pRedBC       |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais
 aliquota_icms                   |  pICMS        |  Sim          |  Decimal   |  Até 3 dígitos, 4 casas decimais
 valor_icms                      |  vICMS        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais
-modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico  |  1 dígito                           |  0=Preço tabelado ou máximo sugerido;<br>1=Lista Negativa (valor);<br>2=Lista Positiva (valor);<br>3=Lista Neutra (valor);<br>4=Margem Valor Agregado (%);<br>5=Pauta (valor).
+modalidade_base_calculo_st      |  modBCST      |  Sim          |  Numérico  |  1 dígito                           |  0 = Preço tabelado ou máximo sugerido;<br>1 = Lista Negativa (valor);<br>2 = Lista Positiva (valor);<br>3 = Lista Neutra (valor);<br>4 = Margem Valor Agregado (%);<br>5 = Pauta (valor).
 valor_base_calculo_st           |  vBCST        |  Sim          |  Decimal   |  Até 13 dígitos, 2 casas decimais
 perc_reducao_base_calculo_st    |  pRedBCST     |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais
 perc_mva_icms_st                |  pMVAST       |  Não          |  Decimal   |  Até 3 dígitos, 4 casas decimais
@@ -645,8 +645,8 @@ O motivo da devolução deverá ser informado pela empresa no campo de Informaç
 
 ### situacao_tributaria = 01 e 02
 
-01 = Operação Tributável com Alíquota Básica
-02 = Operação Tributável com Alíquota Diferenciada
+01 = Operação Tributável (base de cálculo = valor da operação alíquota normal (cumulativo/não cumulativo))
+02 = Operação Tributável (base de cálculo = valor da operação (alíquota diferenciada))
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                       |  Observações
 --------------------------------|---------------|---------------|------------|------------------------------------------|------------
@@ -666,8 +666,8 @@ valor_pis                       |  vPIS         |  Sim          |  Decimal   |  
 
 ### situacao_tributaria = 04, 06, 07, 08, 09
 
-04 = Operação Tributável Monofásica - Revenda a Alíquota Zero
-06 = Operação Tributável a Alíquota Zero
+04 = Operação Tributável (tributação monofásica (alíquota zero))
+06 = Operação Tributável (Substituição Tributária)
 07 = Operação Isenta da Contribuição
 08 = Operação sem Incidência da Contribuição
 09 = Operação com Suspensão da Contribuição
@@ -749,8 +749,8 @@ CST         |  Sim          |  Numérico  |  2 dígitos         |
 
 ### situacao_tributaria = 01 e 02
 
-01 = Operação Tributável com Alíquota Básica
-02 = Operação Tributável com Alíquota Diferenciada
+01 = Operação Tributável (base de cálculo = valor da operação alíquota normal (cumulativo/não cumulativo))
+02 = Operação Tributável (base de cálculo = valor da operação (alíquota diferenciada))
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                       |  Observações
 --------------------------------|---------------|---------------|------------|------------------------------------------|------------
@@ -760,7 +760,7 @@ valor_cofins                    |  vCOFINS      |  Sim          |  Decimal   |  
 
 ### situacao_tributaria = 03
 
-Operação Tributável com Alíquota por Unidade de Medida de Produto.
+Operação Tributável (base de cálculo = quantidade vendida x alíquota por unidade de produto).
 
  Campo                          |  XML          |  Obrigatório  |  Tipo      |  Formato e tamanho                       |  Observações
 --------------------------------|---------------|---------------|------------|------------------------------------------|------------
@@ -770,8 +770,8 @@ valor_cofins                    |  vCOFINS      |  Sim          |  Decimal   |  
 
 ### situacao_tributaria = 04, 06, 07, 08, 09
 
-04 = Operação Tributável Monofásica - Revenda a Alíquota Zero
-06 = Operação Tributável a Alíquota Zero
+04 = Operação Tributável (tributação monofásica (alíquota zero))
+06 = Operação Tributável (alíquota zero)
 07 = Operação Isenta da Contribuição
 08 = Operação sem Incidência da Contribuição
 09 = Operação com Suspensão da Contribuição
@@ -780,7 +780,7 @@ Não há campos para informar alíquota.
 
 ### situacao_tributaria = 05
 
-Operação Tributável por Substituição Tributária.
+Operação Tributável (Substituição Tributária).
 
 ### Cálculo por percentual
 
@@ -869,7 +869,7 @@ data_importacao                 |  dDI          |  Sim          |  Data      |  
 local_desembaraco               |  xLocDesemb   |  Sim          |  Texto     |  1 a 60 caracteres
 uf_desembaraco                  |  UFDesemb     |  Sim          |  Numérico  |  2 dígitos
 data_desembaraco                |  dDesemb      |  Sim          |  Data      |  “AAAA-MM-DD”
-via_transporte                  |  tpViaTransp  |  Sim          |  Numérico  |  2 dígitos | 1=Marítima;<br>2=Fluvial;<br>3=Lacustre;<br>4=Aérea;<br>5=Postal<br>6=Ferroviária;<br>7=Rodoviária;<br>8=Conduto / Rede Transmissão;<br>9=Meios Próprios;<br>10=Entrada / Saída ficta.<br>11=Courier;<br>12=Handcarry
+via_transporte                  |  tpViaTransp  |  Sim          |  Numérico  |  2 dígitos | 1 = Marítima;<br>2 = Fluvial;<br>3 = Lacustre;<br>4 = Aérea;<br>5 = Postal<br>6 = Ferroviária;<br>7 = Rodoviária;<br>8 = Conduto/Rede Transmissão;<br>9 = Meios Próprios;<br>10 = Entrada/Saída ficta.<br>11 = Courier;<br>12 = Handcarry
 valor_afrmm                     |  vAFRMM       |  Não          |  Decimal   |  Até 13 dígitos, 2 casas decimais
 forma_importacao                |  tpIntermedio |  Sim          |  Numérico  |  1 dígito
 cnpj                            |  CNPJ         |  Não          |  Numérico  |  14 dígitos
@@ -1102,7 +1102,7 @@ Grupo de Detalhamento da Forma de Pagamento. No XML, o nó detPag é subitem do 
 
     Campo                       |  Campo no XML   |  Obrigatório        |     Tipo                |    Formato e tamanho               |  Observações
 --------------------------------|-----------------|---------------------|-------------------------|------------------------------------|-----------------------------------------------------------
-    tipo_de_pagamento           |  tPag           |  Sim                |  Texto                  |  2 caracteres                      |  01=Dinheiro;<br>02=Cheque;<br>03=Cartão de Crédito;<br>04=Cartão de Débito;<br>05=Crédito Loja;<br>10=Vale Alimentação;<br>11=Vale Refeição;<br>12=Vale Presente;<br>13=Vale Combustível;<br>14=Duplicata Mercantil;<br>15=Boleto Bancário;<br>90= Sem pagamento;<br>99=Outros.
+    tipo_de_pagamento           |  tPag           |  Sim                |  Texto                  |  2 caracteres                      |  01 = Dinheiro;<br>02 = Cheque;<br>03 = Cartão de Crédito;<br>04 = Cartão de Débito;<br>05 = Crédito Loja;<br>10 = Vale Alimentação;<br>11 = Vale Refeição;<br>12 = Vale Presente;<br>13 = Vale Combustível;<br>14 = Duplicata Mercantil;<br>15 = Boleto Bancário;<br>90 = Sem pagamento;<br>99 = Outros.
     valor_do_pagamento          |  vPag           |  Sim                |  Decimal                | 13 dígitos, 2 casas decimais       |
 
 ## cartao (XML: card)
@@ -1111,9 +1111,9 @@ Grupo de Cartões. No XML, o nó card é subitem do nó detPag e pode conter ape
 
     Campo                       |  Campo no XML   |  Obrigatório        |     Tipo                |    Formato e tamanho               |  Observações
 --------------------------------|-----------------|---------------------|-------------------------|------------------------------------|-----------------------------------------------------------
-    tipo_de_integracao          |  tpIntegra      |  Sim                |  Numérico               | 1 dígito                           | 1=Pagamento integrado com o sistema de automação da empresa (Ex.: equipamento TEF, Comércio Eletrônico);<br>2= Pagamento não integrado com o sistema de automação da empresa (Ex.: equipamento POS);
+    tipo_de_integracao          |  tpIntegra      |  Sim                |  Numérico               | 1 dígito                           | 1 = Pagamento integrado com o sistema de automação da empresa (Ex.: equipamento TEF, Comércio Eletrônico);<br>2 = Pagamento não integrado com o sistema de automação da empresa (Ex.: equipamento POS);
     cnpj_credenciadora          |  CNPJ           |  Condicional*                 |  Numérico               | 14 dígitos                         |
-    bandeira_operadora          |  tBand          |  Condicional*                 |  Numérico               | 2 caracteres                       | 01=Visa;<br>02=Mastercard;<br>03=American Express;<br>04=Sorocred;<br>05=Diners Club;<br>06=Elo;<br>07=Hipercard;<br>08=Aura;<br>09=Cabal;<br>99=Outros.
+    bandeira_operadora          |  tBand          |  Condicional*                 |  Numérico               | 2 caracteres                       | 01 = Visa;<br>02 = Mastercard;<br>03 = American Express;<br>04 = Sorocred;<br>05 = Diners Club;<br>06 = Elo;<br>07 = Hipercard;<br>08 = Aura;<br>09 = Cabal;<br>99 = Outros.
     numero_autorizacao_operacao |  cAut           |  Condicional*                 |  Numérico               | Até 20 caracteres                  |
 
 *Obrigatório para emissões realizadas nas seguintes UFs: CE; PE; RN; AL; BA; ES; MS; PB; PR; RJ; TO.
