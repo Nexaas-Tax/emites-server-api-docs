@@ -203,6 +203,7 @@ Contém informações sobre os produtos contidos na NF-e. No XML, o nó  prod  �
     cdu1                        |     -           |  Não          |     Texto               |  2 caracteres                      | Sigla dos Estados do Brasil. Ex.: RJ <br> (<i>Trata-se de um atributo específico para uso do engine de cálculo TaxRules da TaxWeb.</i>).
     valor_ultima_entrada                   |     -           |  Não          |     Decimal               |  Até 13 dígitos, 2 casas decimais                     | Valor da última entrada. <br> (<i>Trata-se de um atributo específico para uso do engine de cálculo TaxRules da TaxWeb.</i>).
     valor_aliquota_icms_operacao_anterior                   |     -           |  Não          |     Decimal               |  Até 13 dígitos, 2 casas decimais                     | Valor da alíquota ICMS da operação anterior (vlAliquotaICMSOperacaoAnterior). <br> (<i>Trata-se de um atributo específico para uso do engine de cálculo TaxRules da TaxWeb.</i>).
+    informacoes_adicionais  |    infAdProd        |  Não          |     Texto   |  Até 500 caracteres    |  Informações adicionais do produto (norma referenciada, informações complementares, etc).
 ## tributação (XML: imposto)
 
 Grupo de informações relacionadas à tributação de ICMS, IPI, PIS, COFINS e Importação.
