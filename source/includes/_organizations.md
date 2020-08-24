@@ -41,7 +41,6 @@ curl -X POST \
         "company_name": "The String",
         "document": "58521175000124",
         "email": "foo@bar.com",
-
         "inscricao_estadual": "787811920",
         "inscricao_municipal": "13213213",
         "name": "MyString"
@@ -57,6 +56,7 @@ EXEMPLO DE RESPOSTA
       "document": "58521175000124",
       "name": "Foo",
       "inscricao_municipal": "13213213",
+      "inscricao_suframa": null,
       "company_name": "The String",
       "email": "foo@bar.com",
       "logo_file_name": null,
@@ -102,6 +102,7 @@ EXEMPLO DE RETORNO DE ERROS
     inscricao_estadual          |  sim          |     Texto               |   Até 14 caracteres          |  Informar somente os algarismos, sem ponto, hífen, barra, etc. Na emissão de NF-e avulsa pode ser informado o texto ISENTO para os contribuintes do ICMS isentos de inscrição no cadastro de contribuintes do ICMS.
     inscricao_municipal         |  Não          |     Texto               |   Até 15 caracteres          |
     nome_fantasia               |  Não          |     Texto               |   Até 60 caracteres          |
+    inscricao_suframa           |  Não          |     Texto               |   Até 60 caracteres          | Número de cadastro do SUFRAMA (Superintendência da Zona Franca de Manaus)
 
 #### address
 
@@ -198,6 +199,7 @@ EXEMPLO DE RESPOSTA
       "document": "58521175000124",
       "name": "Foo",
       "inscricao_municipal": "13213213",
+      "inscricao_suframa": null,
       "company_name": "Update company_name",
       "email": "foo2@bar.com",
       "logo_file_name": null,
@@ -243,6 +245,7 @@ EXEMPLO DE RETORNO DE ERROS
     inscricao_estadual          |  sim          |     Texto               |   Até 14 caracteres          |  Informar somente os algarismos, sem ponto, hífen, barra, etc. Na emissão de NF-e avulsa pode ser informado o texto ISENTO para os contribuintes do ICMS isentos de inscrição no cadastro de contribuintes do ICMS.
     inscricao_municipal         |  Não          |     Texto               |   Até 15 caracteres          |
     nome_fantasia               |  Não          |     Texto               |   Até 60 caracteres          |
+    inscricao_suframa           |  Não          |     Texto               |   Até 60 caracteres          | Número de cadastro do SUFRAMA (Superintendência da Zona Franca de Manaus)
 
 #### address
 
@@ -326,6 +329,7 @@ EXEMPLO DE RESPOSTA
             "document": "12345678000000",
             "name": "Fulano de tal",
             "inscricao_municipal": "123456",
+            "inscricao_suframa": null,
             "company_name": "F Comp",
             "email": "fulano.de.tal@nexaas.com",
             "logo_file_name": null,
@@ -383,6 +387,7 @@ EXEMPLO DE RESPOSTA
         "document": "12345678000000",
         "name": "Fulano de tal",
         "inscricao_municipal": "123456",
+        "inscricao_suframa": null,
         "company_name": "F Comp",
         "email": "fulano.de.tal@nexaas.com",
         "logo_file_name": null,
