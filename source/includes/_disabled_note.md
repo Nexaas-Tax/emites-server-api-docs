@@ -114,7 +114,7 @@ Para consultar uma inutilização de  NF-e é necessário realizar a seguinte re
 <div class="api-endpoint">
   <div class="endpoint-data">
     <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfe/disable/{nfe_disablement_id}</h6>
+    <h6>/api/v1/organizations/{:organization_id}/nfe/disable/{:nfe_disablement_id}</h6>
   </div>
 </div>
 

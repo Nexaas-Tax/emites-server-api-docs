@@ -28,6 +28,7 @@ includes:
   - cfe_storage
   - request_tracker
   - tax_calculator
+  - taxation_rules_import
   - terminals
   - users
   - webhooks

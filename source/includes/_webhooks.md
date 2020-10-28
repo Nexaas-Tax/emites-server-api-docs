@@ -248,3 +248,16 @@ Quando uma solicitação de carta de correção de uma NF é rejeitada pela SEFA
   "event":"correction_rejected"
 }
 ```
+
+## Importação de regras tributárias concluída
+
+Quando uma importação de regras tributárias é finalizada
+
+```
+{
+  "object_type": "TaxationRulesImport",
+  "object_id": 5,
+  "organization_id": 1,
+  "event": "taxation_rules_import_completed"
+}
+```
