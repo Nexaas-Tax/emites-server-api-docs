@@ -614,7 +614,6 @@ curl -X POST <span class="se">\</span>
         "company_name": "The String",
         "document": "58521175000124",
         "email": "foo@bar.com",
-
         "inscricao_estadual": "787811920",
         "inscricao_municipal": "13213213",
         "name": "MyString"
@@ -630,6 +629,7 @@ EXEMPLO DE RESPOSTA
       <span class="s2">"document"</span>: <span class="s2">"58521175000124"</span>,
       <span class="s2">"name"</span>: <span class="s2">"Foo"</span>,
       <span class="s2">"inscricao_municipal"</span>: <span class="s2">"13213213"</span>,
+      <span class="s2">"inscricao_suframa"</span>: null,
       <span class="s2">"company_name"</span>: <span class="s2">"The String"</span>,
       <span class="s2">"email"</span>: <span class="s2">"foo@bar.com"</span>,
       <span class="s2">"logo_file_name"</span>: null,
@@ -723,6 +723,13 @@ EXEMPLO DE RETORNO DE ERROS
 <td>Texto</td>
 <td>Até 60 caracteres</td>
 <td></td>
+</tr>
+<tr>
+<td>inscricao_suframa</td>
+<td>Não</td>
+<td>Texto</td>
+<td>Até 60 caracteres</td>
+<td>Número de cadastro do SUFRAMA (Superintendência da Zona Franca de Manaus)</td>
 </tr>
 </tbody></table>
 
@@ -879,6 +886,7 @@ EXEMPLO DE RESPOSTA
       <span class="s2">"document"</span>: <span class="s2">"58521175000124"</span>,
       <span class="s2">"name"</span>: <span class="s2">"Foo"</span>,
       <span class="s2">"inscricao_municipal"</span>: <span class="s2">"13213213"</span>,
+      <span class="s2">"inscricao_suframa"</span>: null,
       <span class="s2">"company_name"</span>: <span class="s2">"Update company_name"</span>,
       <span class="s2">"email"</span>: <span class="s2">"foo2@bar.com"</span>,
       <span class="s2">"logo_file_name"</span>: null,
@@ -972,6 +980,13 @@ EXEMPLO DE RETORNO DE ERROS
 <td>Texto</td>
 <td>Até 60 caracteres</td>
 <td></td>
+</tr>
+<tr>
+<td>inscricao_suframa</td>
+<td>Não</td>
+<td>Texto</td>
+<td>Até 60 caracteres</td>
+<td>Número de cadastro do SUFRAMA (Superintendência da Zona Franca de Manaus)</td>
 </tr>
 </tbody></table>
 
@@ -1112,6 +1127,7 @@ curl -X GET <span class="se">\</span>
             <span class="s2">"document"</span>: <span class="s2">"12345678000000"</span>,
             <span class="s2">"name"</span>: <span class="s2">"Fulano de tal"</span>,
             <span class="s2">"inscricao_municipal"</span>: <span class="s2">"123456"</span>,
+            <span class="s2">"inscricao_suframa"</span>: null,
             <span class="s2">"company_name"</span>: <span class="s2">"F Comp"</span>,
             <span class="s2">"email"</span>: <span class="s2">"fulano.de.tal@nexaas.com"</span>,
             <span class="s2">"logo_file_name"</span>: null,
@@ -1165,6 +1181,7 @@ curl -X GET <span class="se">\</span>
         <span class="s2">"document"</span>: <span class="s2">"12345678000000"</span>,
         <span class="s2">"name"</span>: <span class="s2">"Fulano de tal"</span>,
         <span class="s2">"inscricao_municipal"</span>: <span class="s2">"123456"</span>,
+        <span class="s2">"inscricao_suframa"</span>: null,
         <span class="s2">"company_name"</span>: <span class="s2">"F Comp"</span>,
         <span class="s2">"email"</span>: <span class="s2">"fulano.de.tal@nexaas.com"</span>,
         <span class="s2">"logo_file_name"</span>: null,
@@ -11173,7 +11190,7 @@ EXEMPLO DE RESPOSTA
 <div class="api-endpoint">
   <div class="endpoint-data">
     <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfe/disable/{nfe_disablement_id}</h6>
+    <h6>/api/v1/organizations/{:organization_id}/nfe/disable/{:nfe_disablement_id}</h6>
   </div>
 </div>
 <pre class="highlight shell"><code>EXEMPLO DE REQUISIÇÃO
@@ -13315,6 +13332,1281 @@ EXEMPLO DE RESPOSTA
 <span class="o">}</span>
 </code></pre>
 
+          <h1 id="importa-o-de-regras-tribut-rias">Importação de regras tributárias</h1>
+
+<p>O processo de importação das regras tributárias segue resumidamente o seguinte fluxo:</p>
+
+<ol>
+<li>Um CSV com os dados da regra deve ser enviado para o <em>endpoint</em> de <a href="#cria-o-de-uma-importa-o">criação de importação</a></li>
+<li>Ao receber a requisição, o Emites irá registar o CSV para processá-lo em um momento oportuno</li>
+<li>Ao iniciar a importação, o Emites processa o CSV linha a linha, decodificando e validando seus dados</li>
+<li>Se todas as regras estiverem corretas, o Emites substituirá as regras atuais da Organização pelas da importação</li>
+<li>Caso haja qualquer erro, nenhuma substituição ocorrerá</li>
+<li>A qualquer momento é possível <a href="#consulta-de-importa-o">consultar o status da importação</a></li>
+<li>Em caso de falha, ao consultar o status da importação haverá uma lista de erros encontrados durante o processo</li>
+<li>Para um CSV com muitas linhas, é conveniente utilizar o serviço de <a href="#importa-o-de-regras-tribut-rias-conclu-da">webhooks</a> para ser notificado após o fim do processo</li>
+</ol>
+
+<h2 id="cria-o-de-uma-importa-o">Criação de uma importação</h2>
+
+<p>Para criar uma importação, é necessário realizar uma requisição POST para o seguinte endereço:</p>
+
+<div class="api-endpoint">
+  <div class="endpoint-data">
+    <i class="label label-get">POST</i>
+    <h6>/api/v1/organizations/{:organization_id}/taxation_rules_import</h6>
+  </div>
+</div>
+<pre class="highlight shell"><code>EXEMPLO DE REQUISIÇÃO
+
+curl -X POST <span class="se">\</span>
+  -F <span class="s1">'file=@/path/to/csv/import.csv'</span> <span class="se">\</span>
+  https://app.production.emites.com.br/api/v1/organizations/8/taxation_rules_import <span class="se">\</span>
+  -H <span class="s1">'authorization: Bearer c3b1164e8ae17f6d9712730ec75be6da'</span>
+
+EXEMPLO DE RESPOSTA
+
+<span class="o">{</span>
+  <span class="s2">"taxation_rules_import"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 12,
+    <span class="s2">"account_id"</span>: 2,
+    <span class="s2">"organization_id"</span>: 8,
+    <span class="s2">"status"</span>: <span class="s2">"pending"</span>,
+    <span class="s2">"errors"</span>: <span class="o">[]</span>,
+    <span class="s2">"created_at"</span>: <span class="s2">"2019-06-24T15:58:51.866-03:00"</span>,
+    <span class="s2">"updated_at"</span>: <span class="s2">"2019-06-24T15:58:51.866-03:00"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p><br>
+Observe que a requisição é do tipo <code class="prettyprint">multipart/form-data</code>. O arquivo CSV deve ser referenciado através do atributo <code class="prettyprint">file</code>.</p>
+
+<p>Um erro será retornado caso se tente criar uma nova importação quando ainda houver, para mesma Organização, outra com o status <code class="prettyprint">pending</code> ou <code class="prettyprint">prossessing</code>.</p>
+
+<h2 id="consulta-de-importa-o">Consulta de importação</h2>
+
+<p>Para consultar uma importação de regras tributárias é necessário realizar a seguinte requisição:  </p>
+
+<div class="api-endpoint">
+  <div class="endpoint-data">
+    <i class="label label-get">GET</i>
+    <h6>/api/v1/organizations/{:organization_id}/taxation_rules_import/{:taxation_rules_import}</h6>
+  </div>
+</div>
+<pre class="highlight shell"><code>EXEMPLO DE REQUISIÇÃO
+
+curl -X GET <span class="se">\</span>
+  https://app.production.emites.com.br/api/v1/organizations/8/taxation_rules_import/12 <span class="se">\</span>
+  -H <span class="s1">'authorization: Bearer 6f42433270bc61d746556b17605db1s4'</span> <span class="se">\</span>
+  -H <span class="s1">'content-type: application/json'</span>
+
+
+EXEMPLO DE RESPOSTA:
+
+<span class="o">{</span>
+  <span class="s2">"taxation_rules_import"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 12,
+    <span class="s2">"account_id"</span>: 2,
+    <span class="s2">"organization_id"</span>: 8,
+    <span class="s2">"status"</span>: <span class="s2">"processing"</span>,
+    <span class="s2">"errors"</span>: <span class="o">[]</span>,
+    <span class="s2">"created_at"</span>: <span class="s2">"2019-06-24T15:58:51.866-03:00"</span>,
+    <span class="s2">"updated_at"</span>: <span class="s2">"2019-06-24T15:58:51.866-04:00"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h2 id="status-da-importa-o">Status da importação</h2>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Pode transitar para</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">pending</code></td>
+<td><code class="prettyprint">processing</code></td>
+<td>A importação foi registrada mas ainda aguarda processamento</td>
+</tr>
+<tr>
+<td><code class="prettyprint">processing</code></td>
+<td><code class="prettyprint">success</code> ou <code class="prettyprint">error</code></td>
+<td>A importação está sendo processada</td>
+</tr>
+<tr>
+<td><code class="prettyprint">success</code></td>
+<td></td>
+<td>A importação foi concluída com sucesso e as regras antigas foram substituídas pelas da importação</td>
+</tr>
+<tr>
+<td><code class="prettyprint">error</code></td>
+<td></td>
+<td>A importação foi concluída, mas nenhuma regra foi substituída porque erros foram identificados</td>
+</tr>
+</tbody></table>
+
+<h2 id="erros-de-importa-o">Erros de importação</h2>
+
+<p>Os erros identificados durante o processo de importação são retornados pelo consulta de <a href="#consulta-de-importa-o">status da importação</a> e seguem o seguinte formato:</p>
+<pre class="highlight shell"><code><span class="o">{</span>
+  <span class="s2">"taxation_rules_import"</span>: <span class="o">{</span>
+    <span class="s2">"id"</span>: 12,
+    <span class="s2">"account_id"</span>: 2,
+    <span class="s2">"organization_id"</span>: 8,
+    <span class="s2">"status"</span>: <span class="s2">"processing"</span>,
+    <span class="s2">"errors"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"row"</span>: 1,
+        <span class="s2">"message"</span>: <span class="s2">"invalid_nat_op_code"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"Código de natureza de operação inválido"</span>
+      <span class="o">}</span>,
+      <span class="o">{</span>
+        <span class="s2">"row"</span>: 10,
+        <span class="s2">"message"</span>: <span class="s2">"invalid_condition_criterion"</span>,
+        <span class="s2">"description"</span>: <span class="s2">"O atributo de condição aplicacao não aceita os critérios diferente/não está entre"</span>
+      <span class="o">}</span>
+    <span class="o">]</span>,
+    <span class="s2">"created_at"</span>: <span class="s2">"2019-06-24T15:58:51.866-03:00"</span>,
+    <span class="s2">"updated_at"</span>: <span class="s2">"2019-06-24T15:58:51.866-04:00"</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<p><br></p>
+
+<p>Onde:</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">row</code></td>
+<td>A linha do arquivo CSV onde o erro foi identificado, será <code class="prettyprint">-1</code> em caso de erros globais</td>
+</tr>
+<tr>
+<td><code class="prettyprint">message</code></td>
+<td>O tipo da mensagem de erro</td>
+</tr>
+<tr>
+<td><code class="prettyprint">description</code></td>
+<td>Uma descrição detalhada</td>
+</tr>
+</tbody></table>
+
+<p>Os possíveis erros são:</p>
+
+<table><thead>
+<tr>
+<th><code class="prettyprint">message</code></th>
+<th><code class="prettyprint">description</code></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">server_error</code></td>
+<td>O servidor falhou ao tentar processar a importação</td>
+</tr>
+<tr>
+<td><code class="prettyprint">invalid_nat_op_code</code></td>
+<td>Código de natureza de operação inválido</td>
+</tr>
+<tr>
+<td><code class="prettyprint">invalid_condition_criterion</code></td>
+<td>O atributo de condição <strong><code class="prettyprint">{atributo}</code></strong> não aceita o critério <strong><code class="prettyprint">{critério}</code></strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">invalid_condition_value</code></td>
+<td>O atributo de condição <strong><code class="prettyprint">{condição}</code></strong> não aceita o valor <strong><code class="prettyprint">{valor}</code></strong></td>
+</tr>
+</tbody></table>
+
+<h2 id="arquivo-csv">Arquivo CSV</h2>
+
+<p>Ao construir o arquivo, as seguintes regras gerais que devem ser observadas:</p>
+
+<ul>
+<li>As células devem ser separadas por vírgula (<code class="prettyprint">,</code>)</li>
+<li>O arquivo deve possuir um cabeçalho com o nome das colunas (Ex.: <code class="prettyprint">nat_op_code,uf_origem,uf_destino</code>)</li>
+<li>Não pode haver espaços entre os valores (Ex.: <code class="prettyprint">007, RJ,SP</code> é um erro, o correto seria <code class="prettyprint">007,RJ,SP</code>)</li>
+<li>Valores numéricos devem ser separados por ponto (Ex.: R$ 2.000,12 deve ser traduzido como <code class="prettyprint">2000.12</code>)</li>
+<li>Valores como listas devem estar entre aspas e seus itens internos separados com vírgula (Ex.: <code class="prettyprint">007,&quot;RJ,SP,RS&quot;,SP</code>)</li>
+<li>Não há uma ordem obrigatória para as colunas</li>
+</ul>
+
+<h3 id="c-digo-da-natureza-de-opera-o">Código da natureza de operação</h3>
+
+<p>A coluna <code class="prettyprint">nat_op_code</code> é obrigatória e deve ser preenchida em cada linha com um dos seguintes códigos:</p>
+
+<table><thead>
+<tr>
+<th>Código</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>001</td>
+<td>Compra</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Venda</td>
+</tr>
+<tr>
+<td>003</td>
+<td>Transferência</td>
+</tr>
+<tr>
+<td>004</td>
+<td>Devolução</td>
+</tr>
+<tr>
+<td>005</td>
+<td>Importação</td>
+</tr>
+<tr>
+<td>006</td>
+<td>Exportação</td>
+</tr>
+<tr>
+<td>007</td>
+<td>Remessa</td>
+</tr>
+<tr>
+<td>008</td>
+<td>Retorno</td>
+</tr>
+<tr>
+<td>009</td>
+<td>Outras Entradas</td>
+</tr>
+<tr>
+<td>010</td>
+<td>Outras Saídas</td>
+</tr>
+<tr>
+<td>011</td>
+<td>Serviços - ISSQN</td>
+</tr>
+<tr>
+<td>012</td>
+<td>Lançamento de Crédito</td>
+</tr>
+<tr>
+<td>013</td>
+<td>Recebimento</td>
+</tr>
+<tr>
+<td>014</td>
+<td>Ressarcimento</td>
+</tr>
+</tbody></table>
+
+<h3 id="atributos-de-condi-o">Atributos de condição</h3>
+
+<p>Os seguintes atributos de condição podem ser enviados pelo CSV:</p>
+
+<table><thead>
+<tr>
+<th>Atributo</th>
+<th>Nome</th>
+<th>Aceita uma lista de valores?</th>
+<th>Aceita os critérios <strong>DIFERENTE DE</strong> e <strong>NÃO ESTÁ ENTRE</strong></th>
+<th>Valores permitidos</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">aplicacao</code></td>
+<td>Aplicação do produto</td>
+<td>Não</td>
+<td>Não</td>
+<td>Veja <strong>Tabela de valores para Aplicação do produto</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">cest</code></td>
+<td>CEST</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sem restrições</td>
+</tr>
+<tr>
+<td><code class="prettyprint">cnpj_destinatario</code></td>
+<td>CNPJ do destinatário</td>
+<td>Não</td>
+<td>Não</td>
+<td>Sem restrições</td>
+</tr>
+<tr>
+<td><code class="prettyprint">destinatario_consumidor_final</code></td>
+<td>Destinatário é consumidor final</td>
+<td>Não</td>
+<td>Não</td>
+<td><code class="prettyprint">S</code> para <strong>Sim</strong> e <code class="prettyprint">N</code> para <strong>Não</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">destinatario_contribuinte_icms</code></td>
+<td>Destinatário é contribuinte do ICMS</td>
+<td>Não</td>
+<td>Não</td>
+<td><code class="prettyprint">S</code> para <strong>Sim</strong> e <code class="prettyprint">N</code> para <strong>Não</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">destinatario_pessoa_juridica</code></td>
+<td>Destinatário é pessoa jurídica</td>
+<td>Não</td>
+<td>Não</td>
+<td><code class="prettyprint">S</code> para <strong>Sim</strong> e <code class="prettyprint">N</code> para <strong>Não</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">destinatario_beneficiario_suframa</code></td>
+<td>Destinatário beneficiário do SUFRAMA</td>
+<td>Não</td>
+<td>Não</td>
+<td><code class="prettyprint">S</code> para <strong>Sim</strong> e <code class="prettyprint">N</code> para <strong>Não</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">emitente_beneficiario_suframa</code></td>
+<td>Emitente beneficiário do SUFRAMA</td>
+<td>Não</td>
+<td>Não</td>
+<td><code class="prettyprint">S</code> para <strong>Sim</strong> e <code class="prettyprint">N</code> para <strong>Não</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">documentos_referenciados</code></td>
+<td>Possui documentos referenciados</td>
+<td>Não</td>
+<td>Não</td>
+<td><code class="prettyprint">S</code> para <strong>Sim</strong> e <code class="prettyprint">N</code> para <strong>Não</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">extipi</code></td>
+<td>ExTIPI</td>
+<td>Não</td>
+<td>Não</td>
+<td>Sem restrições</td>
+</tr>
+<tr>
+<td><code class="prettyprint">municipio_destino</code></td>
+<td>Município de destino</td>
+<td>Não</td>
+<td>Não</td>
+<td>Sem restrições</td>
+</tr>
+<tr>
+<td><code class="prettyprint">ncm</code></td>
+<td>NCM</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sem restricões</td>
+</tr>
+<tr>
+<td><code class="prettyprint">origem_produto</code></td>
+<td>Origem do produto</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Veja <strong>Tabela de valores para Origem do produto</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">uf_destino</code></td>
+<td>UF destino</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sigla da unidade federativa, em maiúsculo</td>
+</tr>
+<tr>
+<td><code class="prettyprint">uf_origem</code></td>
+<td>UF origem</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sigla da unidade federativa, em maiúsculo</td>
+</tr>
+<tr>
+<td><code class="prettyprint">codigo_regime_tributario</code></td>
+<td>Código de regime tributário</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Veja <strong>Tabela de valores para Código de regime tributário</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">regime_tributario_diferenciado</code></td>
+<td>Regime Tributário Diferenciado do emitente</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Veja <strong>Tabela de valores para Regime Tributário Diferenciado do emitente</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">tipo_operacao</code></td>
+<td>Tipo da operação</td>
+<td>Não</td>
+<td>Não</td>
+<td><code class="prettyprint">0</code> para <strong>Entrada</strong> e <code class="prettyprint">1</code> para <strong>Saída</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">inscricao_suframa</code></td>
+<td>SUFRAMA</td>
+<td>Não</td>
+<td>Não</td>
+<td>Sem restrições</td>
+</tr>
+<tr>
+<td><code class="prettyprint">situacao_fiscal</code></td>
+<td>Situação fiscal</td>
+<td>Sim</td>
+<td>Sim</td>
+<td>Sem restrições</td>
+</tr>
+<tr>
+<td><code class="prettyprint">vigencia_start</code></td>
+<td>Data inicial de vigência</td>
+<td>Não</td>
+<td>Não</td>
+<td>Data válida no formato <code class="prettyprint">dd/mm/aaaa</code></td>
+</tr>
+<tr>
+<td><code class="prettyprint">vigencia_end</code></td>
+<td>Data final de vigência</td>
+<td>Não</td>
+<td>Não</td>
+<td>Data válida no formato <code class="prettyprint">dd/mm/aaaa</code></td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-aplica-o-do-produto">Tabela de valores para Aplicação do produto</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>001</td>
+<td>Amostra Grátis</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Anulação de Valor</td>
+</tr>
+<tr>
+<td>003</td>
+<td>Aquisição</td>
+</tr>
+<tr>
+<td>004</td>
+<td>Armazenagem</td>
+</tr>
+<tr>
+<td>005</td>
+<td>Ativo Imobilizado</td>
+</tr>
+<tr>
+<td>006</td>
+<td>Ato Cooperativo</td>
+</tr>
+<tr>
+<td>007</td>
+<td>Baixa de Estoque a título de encerramento de atividade</td>
+</tr>
+<tr>
+<td>008</td>
+<td>Baixa de Estoque a título de perda, roubo ou deteriorização</td>
+</tr>
+<tr>
+<td>009</td>
+<td>Bonificação, Doação ou Brinde</td>
+</tr>
+<tr>
+<td>010</td>
+<td>Comercialização</td>
+</tr>
+<tr>
+<td>011</td>
+<td>Comodato</td>
+</tr>
+<tr>
+<td>012</td>
+<td>Devolução de Compra - Industrialização</td>
+</tr>
+<tr>
+<td>013</td>
+<td>Conserto ou Reparo</td>
+</tr>
+<tr>
+<td>014</td>
+<td>Consignação</td>
+</tr>
+<tr>
+<td>015</td>
+<td>Conta e Ordem de Terceiros</td>
+</tr>
+<tr>
+<td>016</td>
+<td>Crédito Acumulado de ICMS</td>
+</tr>
+<tr>
+<td>017</td>
+<td>Demonstração</td>
+</tr>
+<tr>
+<td>018</td>
+<td>Distribuição</td>
+</tr>
+<tr>
+<td>019</td>
+<td>Embalagem</td>
+</tr>
+<tr>
+<td>020</td>
+<td>Exposição ou Feira</td>
+</tr>
+<tr>
+<td>021</td>
+<td>ICMS retido por ST</td>
+</tr>
+<tr>
+<td>022</td>
+<td>Industrialização</td>
+</tr>
+<tr>
+<td>023</td>
+<td>Locação</td>
+</tr>
+<tr>
+<td>024</td>
+<td>Operação fora estabelecimento</td>
+</tr>
+<tr>
+<td>025</td>
+<td>Prestação</td>
+</tr>
+<tr>
+<td>026</td>
+<td>Regime Especial Aduaneiro de Admissão temporária</td>
+</tr>
+<tr>
+<td>027</td>
+<td>Saldo Credor de ICMS</td>
+</tr>
+<tr>
+<td>028</td>
+<td>Saldo Devedor de ICMS</td>
+</tr>
+<tr>
+<td>029</td>
+<td>Uso e Consumo</td>
+</tr>
+<tr>
+<td>030</td>
+<td>Vasilhame ou Sacaria</td>
+</tr>
+<tr>
+<td>031</td>
+<td>Devolução de Venda - Industrialização</td>
+</tr>
+<tr>
+<td>032</td>
+<td>Transferência</td>
+</tr>
+<tr>
+<td>033</td>
+<td>Simples Faturamento</td>
+</tr>
+<tr>
+<td>034</td>
+<td>Devolução de Compra - Comercialização</td>
+</tr>
+<tr>
+<td>035</td>
+<td>Devolução de Venda - Comercialização</td>
+</tr>
+<tr>
+<td>099</td>
+<td>Outros</td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-origem-do-produto">Tabela de valores para Origem do produto</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Nacional, exceto as indicadas nos códigos 3 a 5</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Estrangeira - Importação direta, exceto a indicada no código 6</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Estrangeira - Adquirida no mercado interno, exceto a indicada no código 7</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Nacional, mercadoria ou bem com conteúdo de Importação superior a  40%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Nacional, cuja produção tenha sido feita em conformidade com os processos produtivos básicos de que tratam o Decreto-Lei nº 288/67, e as Leis nºs  8.248/91, 8.387/91, 10.176/01 e 11.484/07</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Nacional, mercadoria ou bem com Conteúdo de Importação inferior ou igual a 40%</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Estrangeira - Importação direta, sem similar nacional, constante em lista de Resolução CAMEX</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Estrangeira - Adquirida no mercado interno, sem similar nacional, constante em lista de Resolução CAMEX</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Serviço - Nacional</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Serviço - Estrangeiro, cujo resultado se verifique no país</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Serviço - Estrangeiro, cujo resultado se verifique no exterior</td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-c-digo-de-regime-tribut-rio">Tabela de valores para Código de regime tributário</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Simples Nacional</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Simples Nacional, excesso sublimite de receita bruta</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Regime Normal</td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-regime-tribut-rio-diferenciado-do-emitente">Tabela de valores para Regime Tributário Diferenciado do emitente</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>001</td>
+<td>Repes</td>
+</tr>
+<tr>
+<td>002</td>
+<td>Recap</td>
+</tr>
+<tr>
+<td>003</td>
+<td>Padis</td>
+</tr>
+<tr>
+<td>004</td>
+<td>Patvd</td>
+</tr>
+<tr>
+<td>005</td>
+<td>Reidi</td>
+</tr>
+<tr>
+<td>006</td>
+<td>Repenec</td>
+</tr>
+<tr>
+<td>007</td>
+<td>Reicomp</td>
+</tr>
+<tr>
+<td>008</td>
+<td>Retaero</td>
+</tr>
+<tr>
+<td>009</td>
+<td>Recine</td>
+</tr>
+<tr>
+<td>010</td>
+<td>Resíduos Sólidos</td>
+</tr>
+<tr>
+<td>011</td>
+<td>Recopa</td>
+</tr>
+<tr>
+<td>012</td>
+<td>Copa do Mundo</td>
+</tr>
+<tr>
+<td>013</td>
+<td>Retid</td>
+</tr>
+<tr>
+<td>014</td>
+<td>Repnbl-Redes</td>
+</tr>
+<tr>
+<td>015</td>
+<td>Reif</td>
+</tr>
+<tr>
+<td>016</td>
+<td>Olimpíadas</td>
+</tr>
+<tr>
+<td>017</td>
+<td>TaxWeb - LFDES</td>
+</tr>
+<tr>
+<td>018</td>
+<td>TaxWeb - LFEM</td>
+</tr>
+<tr>
+<td>019</td>
+<td>TaxWeb - ISENLF</td>
+</tr>
+<tr>
+<td>020</td>
+<td>ICMS Substituto Tributário</td>
+</tr>
+<tr>
+<td>021</td>
+<td>ICMS Substituído Tributário</td>
+</tr>
+</tbody></table>
+
+<h3 id="crit-rios-para-os-atributos-de-condi-o">Critérios para os atributos de condição</h3>
+
+<p>Os valores de um atributo de condição são comparados com os dados de um documento fiscal, esta comparação pode ser feita utilizando-se quatro critérios diferentes: <strong>IGUAL A</strong>, <strong>DIFERENTE DE</strong>, <strong>ESTÁ ENTRE</strong> e <strong>NÃO ESTÁ ENTRE</strong>.</p>
+
+<p>Para representar estes diferentes critérios no CSV, os valores de cada condição devem vir formatados da seguinte forma:</p>
+
+<table><thead>
+<tr>
+<th>Critério</th>
+<th>Formato do valor no CSV</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>IGUAL A</strong></td>
+<td>Sem nenhuma formatação específica, é o critério padrão</td>
+</tr>
+<tr>
+<td><strong>DIFERENTE DE</strong></td>
+<td>Deve-se adicionar o caractere <code class="prettyprint">!</code> antes do valor (Ex.: <code class="prettyprint">!1</code>)</td>
+</tr>
+<tr>
+<td><strong>ESTÁ ENTRE</strong></td>
+<td>Deve-se por o valor entre aspas (<code class="prettyprint">&quot;</code>) e separar os itens por vígula (<code class="prettyprint">,</code>), (Ex.: <code class="prettyprint">&quot;0,1,2&quot;</code>)</td>
+</tr>
+<tr>
+<td><strong>NÃO ESTÁ ENTRE</strong></td>
+<td>Semelhante ao <strong>ESTÁ ENTRE</strong>, só que com o caractere <code class="prettyprint">!</code> antes do primeiro item (Ex.: <code class="prettyprint">&quot;!0,1,2&quot;</code>)</td>
+</tr>
+</tbody></table>
+
+<p>Os atributos <code class="prettyprint">vigencia_start</code> e <code class="prettyprint">vigencia_end</code> possuem critérios próprios que são inferidos dinâmicamente pelo processo de importação.</p>
+
+<h3 id="atributos-de-consequ-ncia">Atributos de consequência</h3>
+
+<p>Os seguintes atributos de consequência podem ser enviados pelo CSV:</p>
+
+<table><thead>
+<tr>
+<th>Atributo</th>
+<th>Nome</th>
+<th>Tipo de imposto</th>
+<th>Valores permitidos</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">aliquota_icms</code></td>
+<td>Alíquota de ICMS</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_icms_st</code></td>
+<td>Alíquota de ICMS ST</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">cfop</code></td>
+<td>CFOP</td>
+<td>ICMS</td>
+<td>Consulte <a href="http://www.sped.fazenda.gov.br/spedtabelas/AppConsulta/publico/aspx/ConsultaTabelasExternas.aspx?CodSistema=SpedFiscal">aqui</a></td>
+</tr>
+<tr>
+<td><code class="prettyprint">modalidade_base_calculo</code></td>
+<td>Modalidade de base de cálculo</td>
+<td>ICMS</td>
+<td>Veja <strong>Tabela de valores para Modalidade de base de cálculo</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">modalidade_base_calculo_st</code></td>
+<td>Modalidade de base de cálculo ST</td>
+<td>ICMS</td>
+<td>Veja <strong>Tabela de valores para Modalidade de base de cálculo ST</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">motivo_desoneracao</code></td>
+<td>Motivo de desoneração</td>
+<td>ICMS</td>
+<td>Veja <strong>Tabela de valores para  Motivo de desoneração</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">percentual_de_diferimento</code></td>
+<td>Percentual de diferimento</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">percentual_de_fcp</code></td>
+<td>Percentual de FCP</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">percentual_de_mva_st</code></td>
+<td>Percentual de MVA ST</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">reducao_base_calculo</code></td>
+<td>Redução da base de cálculo</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">reducao_de_base_de_calculo_st</code></td>
+<td>Redução da base de cálculo ST</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">situacao_tributaria_icms</code></td>
+<td>Situação Tributária do ICMS</td>
+<td>ICMS</td>
+<td>Veja <strong>Tabela de valores para Situação Tributária do ICMS</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">uf_icms_st_devido</code></td>
+<td>UF de ICMS ST devido na operação</td>
+<td>ICMS</td>
+<td>Sigla da unidade federativa, em maiúsculo</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_de_fcp_do_difal</code></td>
+<td>Alíquota de FCP do Difal</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_interestadual</code></td>
+<td>Alíquota interestadual</td>
+<td>ICMS</td>
+<td>Veja <strong>Tabela de valores para Alíquota interestadual</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_interna_uf_destino</code></td>
+<td>Alíquota interna - UF destino</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">base_de_calculo_da_uf_destino</code></td>
+<td>Base de cálculo da UF destino</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">percentual_provisorio_de_partilha</code></td>
+<td>Percentual provisório de partilha</td>
+<td>ICMS</td>
+<td>Veja <strong>Tabela de valores para Percentual provisório de partilha</strong></td>
+</tr>
+<tr>
+<td><code class="prettyprint">valor_icms_desonerado</code></td>
+<td>Valor do ICMS Desonerado</td>
+<td>ICMS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_ipi</code></td>
+<td>Alíquota do IPI</td>
+<td>IPI</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">situacao_tributaria_ipi</code></td>
+<td>Situação Tributária do IPI</td>
+<td>IPI</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">valor_por_unidade_em_reais</code></td>
+<td>Valor por unidade (em reais)</td>
+<td>IPI</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">codigo_enquadramento</code></td>
+<td>Código de Enquadramento Legal (cEnq)</td>
+<td>IPI</td>
+<td>Sem restrições</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_cofins</code></td>
+<td>Alíquota do COFINS</td>
+<td>PIS e COFINS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_do_cofins_st</code></td>
+<td>Alíquota do COFINS-ST</td>
+<td>PIS e COFINS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_do_pis_st</code></td>
+<td>Alíquota do PIS-ST</td>
+<td>PIS e COFINS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_em_reais_do_cofins</code></td>
+<td>Alíquota em reais do COFINS</td>
+<td>PIS e COFINS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_em_reais_do_cofins_st</code></td>
+<td>Alíquota em reais do COFINS-ST</td>
+<td>PIS e COFINS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_em_reais_do_pis</code></td>
+<td>Alíquota em reais do PIS</td>
+<td>PIS e COFINS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_em_reais_do_pis_st</code></td>
+<td>Alíquota em reais do PIS-ST</td>
+<td>PIS e COFINS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">aliquota_pis</code></td>
+<td>Alíquota do PIS</td>
+<td>PIS e COFINS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">situacao_tributaria_pis</code></td>
+<td>Situação Tributária do PIS</td>
+<td>PIS</td>
+<td>Valores numéricos</td>
+</tr>
+<tr>
+<td><code class="prettyprint">situacao_tributaria_cofins</code></td>
+<td>Situação Tributária do COFINS</td>
+<td>COFINS</td>
+<td>Valores numericos</td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-modalidade-de-base-de-c-lculo">Tabela de valores para Modalidade de base de cálculo</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Margem de Valor Agregado</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Pauta (valor)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Preço Tabelado Máximo (valor)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Valor da Operação</td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-modalidade-de-base-de-c-lculo-st">Tabela de valores para Modalidade de base de cálculo ST</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>0</td>
+<td>Preço Tabelado ou Máximo Sugerido</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Lista Negativa (valor)</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Lista Positiva (valor)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Lista Neutra (valor)</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Margem de Valor Agregado (%)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Pauta (valor)</td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-motivo-de-desonera-o">Tabela de valores para  Motivo de desoneração</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>Táxi</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Produtor Agropecuário</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Frotista/Locadora</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Diplomático/Consular</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Utilitários e Motocicletas da Amazônia Ocidental e Áreas de Livre Comércio (Resolução 714/88 e 790/94 – CONTRAN e suas alterações)</td>
+</tr>
+<tr>
+<td>7</td>
+<td>SUFRAMA</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Venda a Órgão Público</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Outros. (NT 2011/004)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Deficiente Condutor (Convênio ICMS 38/12)</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Deficiente Não Condutor (Convênio ICMS 38/12)</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Órgão de fomento e desenvolvimento agropecuário</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Olimpíadas Rio 2016 (NT 2015.002)</td>
+</tr>
+<tr>
+<td>90</td>
+<td>Solicitado pelo Fisco (NT 2016/002) (Revogada a partir da versão 3.10 a possibilidade de usar o motivo 2 - Deficiente Físico)</td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-situa-o-tribut-ria-do-icms">Tabela de valores para Situação Tributária do ICMS</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>00</td>
+<td>Tributada integralmente</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Tributada e com cobrança do ICMS por substituição tributária</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Com redução de base de cálculo</td>
+</tr>
+<tr>
+<td>30</td>
+<td>Isenta ou não tributada e com cobrança do ICMS por substituição tributária</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Isenta</td>
+</tr>
+<tr>
+<td>41</td>
+<td>Não Tributada</td>
+</tr>
+<tr>
+<td>50</td>
+<td>Suspensão</td>
+</tr>
+<tr>
+<td>51</td>
+<td>Diferimento</td>
+</tr>
+<tr>
+<td>60</td>
+<td>ICMS cobrado anteriormente por substituição tributária</td>
+</tr>
+<tr>
+<td>70</td>
+<td>Com redução de base de cálculo e cobrança do ICMS por substituição tributária</td>
+</tr>
+<tr>
+<td>90</td>
+<td>Outros</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Tributada pelo Simples Nacional com permissão de crédito</td>
+</tr>
+<tr>
+<td>102</td>
+<td>Tributada pelo Simples Nacional sem permissão de crédito</td>
+</tr>
+<tr>
+<td>103</td>
+<td>Isenção do ICMS no Simples Nacional para faixa de receita bruta</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Tributada pelo Simples Nacional com permissão de crédito e com cobrança do ICMS por Substituição Tributária</td>
+</tr>
+<tr>
+<td>202</td>
+<td>Tributada pelo Simples Nacional sem permissão de crédito e com cobrança do ICMS por Substituição Tributária</td>
+</tr>
+<tr>
+<td>203</td>
+<td>Isenção do ICMS nos Simples Nacional para faixa de receita bruta e com cobrança do ICMS por Substituição Tributária</td>
+</tr>
+<tr>
+<td>300</td>
+<td>Imune</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Não tributada pelo Simples Nacional</td>
+</tr>
+<tr>
+<td>500</td>
+<td>ICMS cobrado anteriormente por substituição tributária (substituído) ou por antecipação</td>
+</tr>
+<tr>
+<td>900</td>
+<td>Outros</td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-al-quota-interestadual">Tabela de valores para Alíquota interestadual</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>4</td>
+<td>4% alíquota para produtos importados</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7% para os estados de origem do Sul e Sudeste (exceto ES), destinado para os estados do Norte, Nordeste, Centro-Oeste e Espírito Santo</td>
+</tr>
+<tr>
+<td>12</td>
+<td>12% para os demais casos</td>
+</tr>
+</tbody></table>
+
+<h4 id="tabela-de-valores-para-percentual-provis-rio-de-partilha">Tabela de valores para Percentual provisório de partilha</h4>
+
+<table><thead>
+<tr>
+<th>Valor</th>
+<th>Descrição</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>40</td>
+<td>40% em 2016</td>
+</tr>
+<tr>
+<td>60</td>
+<td>60% em 2017</td>
+</tr>
+<tr>
+<td>80</td>
+<td>80% em 2018</td>
+</tr>
+<tr>
+<td>100</td>
+<td>100% a partir de 2019</td>
+</tr>
+</tbody></table>
+
           <h1 id="terminais">Terminais</h1>
 
 <h2 id="cria-o-de-terminal">Criação de terminal</h2>
@@ -14253,6 +15545,17 @@ Os webhooks também são conhecidos como Callbacks ou Reverse API .  </p>
   </span><span class="nt">"object_id"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
   </span><span class="nt">"organization_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"correction_rejected"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="importa-o-de-regras-tribut-rias-conclu-da">Importação de regras tributárias concluída</h2>
+
+<p>Quando uma importação de regras tributárias é finalizada</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"object_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TaxationRulesImport"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"object_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"organization_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"taxation_rules_import_completed"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
