@@ -45,7 +45,7 @@ EXEMPLO DE RESPOSTA
 }
 ```
 <br>
-Observe que, por se tratar do envio de um arquivo, certifique-se que sua requisição será `multipart/form-data`. O arquivo CSV deve ser referenciado através do atributo `file`.
+Observe que a requisição é do tipo `multipart/form-data`. O arquivo CSV deve ser referenciado através do atributo `file`.
 
 Um erro será retornado caso se tente criar uma nova importação quando ainda houver, para mesma Organização, outra com o status `pending` ou `prossessing`.
 
@@ -198,6 +198,7 @@ Os seguintes atributos de condição podem ser enviados pelo CSV:
  `regime_tributario_diferenciado` | Regime Tributário Diferenciado do emitente | Sim | Sim | Veja **Tabela de valores para Regime Tributário Diferenciado do emitente**
  `tipo_operacao` | Tipo da operação | Não | Não | `0` para **Entrada** e `1` para **Saída**
  `inscricao_suframa` | SUFRAMA | Não | Não | Sem restrições
+ `situacao_fiscal` | Situação fiscal | Sim | Sim | Sem restrições
  `vigencia_start` | Data inicial de vigência | Não | Não | Data válida no formato `dd/mm/aaaa`
  `vigencia_end` | Data final de vigência | Não | Não | Data válida no formato `dd/mm/aaaa`
 
