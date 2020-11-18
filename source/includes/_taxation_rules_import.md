@@ -141,6 +141,8 @@ Os possíveis erros são:
  `invalid_condition_criterion` | O atributo de condição **`{atributo}`** não aceita o critério **`{critério}`**
  `invalid_condition_value`     | O atributo de condição **`{condição}`** não aceita o valor **`{valor}`**
 
+**Obs.**: A importação identifica no máximo 100 erros, quando este limite é atingido o processo de importação é encerrado e eventuais erros adicionais não serão identificados.
+
 ## Arquivo CSV
 
 Ao construir o arquivo, as seguintes regras gerais que devem ser observadas:
@@ -199,8 +201,12 @@ Os seguintes atributos de condição podem ser enviados pelo CSV:
  `tipo_operacao` | Tipo da operação | Não | Não | `0` para **Entrada** e `1` para **Saída**
  `inscricao_suframa` | SUFRAMA | Não | Não | Sem restrições
  `situacao_fiscal` | Situação fiscal | Sim | Sim | Sem restrições
+ `codigo_beneficio_fiscal` | Código de benefício fiscal | Sim | Sim | Sem restrições
+ `codigo_produto` | Código do produto | Sim | Sim | Sem restrições
  `vigencia_start` | Data inicial de vigência | Não | Não | Data válida no formato `dd/mm/aaaa`
  `vigencia_end` | Data final de vigência | Não | Não | Data válida no formato `dd/mm/aaaa`
+
+**Obs.**: O atributo `codigo_do_produto` pode ser omitido automaticamente durante a importação mesmo quando presente no CSV. O `codigo_do_produto` só **NÃO SERÁ OMITIDO** quando existir uma regra para a mesma natureza de operação e memso grupo tributário com condições diferentes mas consequências potencialmente conflitantes, de moto que a presença do atributo é relevante para evitar o enquadramento inadequado em determinados cenários.
 
 #### Tabela de valores para Aplicação do produto
 
@@ -428,4 +434,3 @@ Os seguintes atributos de consequência podem ser enviados pelo CSV:
  60  | 60% em 2017
  80  | 80% em 2018
  100 | 100% a partir de 2019
-
