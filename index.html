@@ -1398,6 +1398,7 @@ curl -X POST <span class="se">\</span>
   -d <span class="s1">'{
     "nfe": {
       "engine_de_calculo": "",
+      "remote_id": "abc123",
       "contingencia": false,
       "cliente": {
         "cpf_cnpj": "46728754000163",
@@ -1663,7 +1664,11 @@ EXEMPLO DE RESPOSTA
 
 <span class="o">{</span>
   <span class="s2">"nfe"</span>: <span class="o">{</span>
-    <span class="s2">"id"</span>: 10990,
+    <span class="s2">"access_key"</span>: <span class="s2">""</span>,
+    <span class="s2">"id"</span>: 1,
+    <span class="s2">"request_id"</span>: <span class="s2">"a6d26041-6ff2-41f4-ad93-78f7a3989bab"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"processing"</span>
   <span class="o">}</span>
 <span class="o">}</span>
@@ -1698,6 +1703,7 @@ curl -X POST <span class="se">\</span>
   -d <span class="s1">'{
     "nfce": {
       "engine_de_calculo": "",
+      "remote_id": "123abc",
       "dados_gerais": {
         "csc": "000001",
         "id_token": "A16A5A2DI8FA443FB8710D9AB8EB5432",
@@ -1881,7 +1887,11 @@ EXEMPLO DE RESPOSTA
 
 <span class="o">{</span>
   <span class="s2">"nfce"</span>: <span class="o">{</span>
-    <span class="s2">"id"</span>: 1099,
+    <span class="s2">"access_key"</span>: <span class="s2">""</span>,
+    <span class="s2">"id"</span>: 1,
+    <span class="s2">"request_id"</span>: <span class="s2">"4a235336-1fc0-4cf8-8ab9-0c351c697201"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"123abc"</span>,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"processing"</span>
   <span class="o">}</span>
 <span class="o">}</span>
@@ -1915,6 +1925,7 @@ curl -X POST <span class="se">\</span>
           "serie": 1,
           "sincronicidade": 0,
           "uf": 35,
+          "remote_id": "dfg123",
           "nfes": [
             {
               "cliente": {
@@ -2182,11 +2193,17 @@ EXEMPLO DE RESPOSTA
 
 <span class="o">{</span>
   <span class="s2">"nfe_batch"</span>: <span class="o">{</span>
-    <span class="s2">"id"</span>: 1099,
+    <span class="s2">"id"</span>: 1,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"dfg123"</span>,
     <span class="s2">"nfes"</span>: <span class="o">[</span>
       <span class="o">{</span>
-        <span class="s2">"id"</span>: 10990,
+        <span class="s2">"access_key"</span>: null,
+        <span class="s2">"id"</span>: 1,
+        <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -2226,6 +2243,7 @@ curl -X POST <span class="se">\</span>
           "serie": "1",
           "sincronicidade": "0",
           "uf": "53",
+          "remote_id": "123dfg",
           "nfces": [
             {
               "dados_gerais": {
@@ -2413,11 +2431,17 @@ EXEMPLO DE RESPOSTA
 
 <span class="o">{</span>
   <span class="s2">"nfce_batch"</span>: <span class="o">{</span>
-    <span class="s2">"id"</span>: 1099,
+    <span class="s2">"id"</span>: 1,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"263f6dd1-ba23-44a2-82f5-2e34bfa6b5c2"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"123dfg"</span>,
     <span class="s2">"nfces"</span>: <span class="o">[</span>
       <span class="o">{</span>
-        <span class="s2">"id"</span>: 10990,
+        <span class="s2">"access_key"</span>: null,
+        <span class="s2">"id"</span>: 1,
+        <span class="s2">"request_id"</span>: <span class="s2">"ba951765-880c-4745-8eb1-8ca24e6b8566"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -9172,6 +9196,30 @@ placa</p>
 </tr>
 </tbody></table>
 
+<h2 id="remote_id-xml-n-a">remote_id (XML: N/A)</h2>
+
+<p>Identificador único da requisição gerado pelo requisitante para controle próprio. </p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Campo no XML</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Formato e tamanho</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>remote_id</td>
+<td>-</td>
+<td>Não</td>
+<td>Texto</td>
+<td>-</td>
+<td>O campo aceita apenas caracteres ou caracteres juntamente com dígitos numéricos e/ou caracteres especiais, não devendo ser informado apenas números.</td>
+</tr>
+</tbody></table>
+
           <h1 id="lista">Lista</h1>
 
 <h2 id="lista-de-nf-e">Lista de NF-e</h2>
@@ -9398,36 +9446,22 @@ EXEMPLO DE RESPOSTA:
 <div class="api-endpoint">
   <div class="endpoint-data">
     <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfe/{nfe_id}  </h6>
+    <h6>/api/v1/organizations/{organization_id}/nfe/{id}  </h6>
   </div>
 </div>
 
-<p>ou pela chave de acesso:</p>
-
-<div class="api-endpoint">
-  <div class="endpoint-data">
-    <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfe/{chave_acesso}  </h6>
-  </div>
-</div>
+<p>Obs: O &ldquo;id&rdquo; pode ser preenchido com o nfe_id, chave de acesso da nota, request_id ou remote_id.</p>
 
 <h3 id="e-para-consultar-uma-nfc-e-a-seguinte">E para consultar uma NFC-e, a seguinte:</h3>
 
 <div class="api-endpoint">
   <div class="endpoint-data">
     <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfce/{nfce_id}  </h6>
+    <h6>/api/v1/organizations/{organization_id}/nfce/{id}  </h6>
   </div>
 </div>
 
-<p>ou pela chave de acesso:</p>
-
-<div class="api-endpoint">
-  <div class="endpoint-data">
-    <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfce/{chave_acesso}  </h6>
-  </div>
-</div>
+<p>Obs: O &ldquo;id&rdquo; pode ser preenchido com o nfce_id, chave de acesso, request_id ou remote_id.</p>
 
 <h3 id="para-consultar-o-valor-total-por-c-digo-de-opera-o-cfop-em-um-determinado-per-odo-fixo">Para consultar o Valor Total por código de operação (CFOP) em um determinado período fixo:</h3>
 
@@ -9459,6 +9493,7 @@ curl -X POST <span class="se">\</span>
           "sincronicidade": 0,
           "serie": 611,
           "uf": 53,
+          "remote_id": "abc123",
           "nfes": [
             {
               "dados_gerais": {
@@ -9595,11 +9630,17 @@ EXEMPLO DE RESPOSTA
 
 <span class="o">{</span>
   <span class="s2">"nfe_batch"</span>: <span class="o">{</span>
-    <span class="s2">"id"</span>: 169,
+    <span class="s2">"id"</span>: 1,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
     <span class="s2">"nfes"</span>: <span class="o">[</span>
       <span class="o">{</span>
-        <span class="s2">"id"</span>: 350, <span class="c"># Identificador da NF-e</span>
+        <span class="s2">"access_key"</span>: null,
+        <span class="s2">"id"</span>: 350,
+        <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -9622,7 +9663,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfe"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: <span class="s2">"53190222769530000131556110000002001616311935"</span>,
     <span class="s2">"id"</span>: 350,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"succeeded"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -9651,7 +9696,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfe"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: <span class="s2">"53190222769530000131556110000002001616311935"</span>,
     <span class="s2">"id"</span>: 350,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"succeeded"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -9819,11 +9868,17 @@ EXEMPLO DE RESPOSTA
 
 <span class="o">{</span>
   <span class="s2">"nfe_batch"</span>: <span class="o">{</span>
-    <span class="s2">"id"</span>: 170,
+    <span class="s2">"id"</span>: 1,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: null,
     <span class="s2">"nfes"</span>: <span class="o">[</span>
       <span class="o">{</span>
+        <span class="s2">"access_key"</span>: null,
         <span class="s2">"id"</span>: 351, <span class="c"># Identificador da NF-e</span>
+        <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -9846,7 +9901,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfe"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: null,
     <span class="s2">"id"</span>: 351,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: null,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"rejected"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -10015,9 +10074,15 @@ EXEMPLO DE RESPOSTA
   <span class="s2">"nfe_batch"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: 170,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: null,
     <span class="s2">"nfes"</span>: <span class="o">[</span>
       <span class="o">{</span>
-        <span class="s2">"id"</span>: 351, <span class="c"># Identificador da NF-e</span>
+        <span class="s2">"access_key"</span>: null,
+        <span class="s2">"id"</span>: 351,
+        <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -10040,7 +10105,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfe"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: null,
     <span class="s2">"id"</span>: 351,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: null,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"denegated"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -10209,9 +10278,15 @@ EXEMPLO DE RESPOSTA
   <span class="s2">"nfe_batch"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: 171,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: null,
     <span class="s2">"nfes"</span>: <span class="o">[</span>
       <span class="o">{</span>
+        <span class="s2">"access_key"</span>: null,
         <span class="s2">"id"</span>: 352, <span class="c"># Identificador da NF-e</span>
+        <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -10234,7 +10309,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfe"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: null,
     <span class="s2">"id"</span>: 352,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: null,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"rejected"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -10267,6 +10346,7 @@ curl -X POST <span class="se">\</span>
           "sincronicidade": 0,
           "uf": "53",
           "serie": 717,
+          "remote_id": "123abc",
           "nfces": [
             {
               "dados_gerais": {
@@ -10352,9 +10432,15 @@ EXEMPLO DE RESPOSTA
   <span class="s2">"nfce_batch"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: 53,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"123abc"</span>,
     <span class="s2">"nfces"</span>: <span class="o">[</span>
       <span class="o">{</span>
+        <span class="s2">"access_key"</span>: null,
         <span class="s2">"id"</span>: 109, <span class="c"># Identificador da NFC-e</span>
+        <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -10377,7 +10463,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfce"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: <span class="s2">"53190222769530000131657170000000501127125918"</span>,
     <span class="s2">"id"</span>: 109,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: null,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"succeeded"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -10406,7 +10496,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfce"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: <span class="s2">"53190222769530000131657170000000501127125918"</span>,
     <span class="s2">"id"</span>: 109,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: null,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"succeeded"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -10524,9 +10618,15 @@ EXEMPLO DE RESPOSTA
   <span class="s2">"nfce_batch"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: 53,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: null,
     <span class="s2">"nfces"</span>: <span class="o">[</span>
       <span class="o">{</span>
+        <span class="s2">"access_key"</span>: null,
         <span class="s2">"id"</span>: 110, <span class="c"># Identificador da NFC-e</span>
+        <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -10549,7 +10649,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfce"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: null,
     <span class="s2">"id"</span>: 110,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: null,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"rejected"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -10666,9 +10770,15 @@ EXEMPLO DE RESPOSTA
   <span class="s2">"nfce_batch"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: 53,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: null,
     <span class="s2">"nfces"</span>: <span class="o">[</span>
       <span class="o">{</span>
+        <span class="s2">"access_key"</span>: null,
         <span class="s2">"id"</span>: 110, <span class="c"># Identificador da NFC-e</span>
+        <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -10691,7 +10801,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfce"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: null,
     <span class="s2">"id"</span>: 110,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: null,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"denegated"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -10803,12 +10917,19 @@ curl -X POST <span class="se">\</span>
 
 
 EXEMPLO DE RESPOSTA
+
+<span class="o">{</span>
   <span class="s2">"nfce_batch"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: 53,
     <span class="s2">"key"</span>: null,
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: null,
     <span class="s2">"nfces"</span>: <span class="o">[</span>
       <span class="o">{</span>
         <span class="s2">"id"</span>: 111, <span class="c"># Identificador da NFC-e</span>
+        <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>
       <span class="o">}</span>
     <span class="o">]</span>
@@ -10831,7 +10952,11 @@ EXEMPLO DE RESPOSTA:
 
 <span class="o">{</span>
   <span class="s2">"nfce"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: null,
     <span class="s2">"id"</span>: 111,
+    <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+    <span class="s2">"remote_id"</span>: null,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"rejected"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>
       ...
@@ -10904,6 +11029,15 @@ curl -X PATCH <span class="se">\</span>
           "motivo": "Desistência do cliente"
         }'</span>
 
+<span class="c"># Enviando Remote ID</span>
+curl -X PATCH <span class="se">\</span>
+    https://app.production.emites.com.br/api/v1/organizations/11/nfe/10990/cancel <span class="se">\</span>
+    -H <span class="s1">'authorization: Bearer 6f42433270bc61d746556b17605db1s4'</span> <span class="se">\</span>
+    -d <span class="s1">'{
+          "motivo": "Desistência do cliente",
+          "remote_id": "abc123"
+        }'</span>
+
 <span class="c"># Usando a chave de acesso</span>
 curl -X PATCH <span class="se">\</span>
     https://app.emites.com.br/api/v1/organizations/11/nfe/53190222769530000131556110000002041100341123/cancel <span class="se">\</span>
@@ -10913,12 +11047,10 @@ EXEMPLO DE RESPOSTA
 
 <span class="o">{</span>
   <span class="s2">"nfe"</span>: <span class="o">{</span>
-    <span class="s2">"id"</span>: 10990,
+    <span class="s2">"id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"processing"</span>,
-    <span class="s2">"data"</span>: <span class="o">{</span>...<span class="o">}</span>,
-    <span class="s2">"danfe_url"</span>: <span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfe/pdf_files/000/015/761/original/danfe.pdf?153719"</span>,
-    <span class="s2">"xml_url"</span>: <span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfe/xml_files/000/015/761/original/nfe.xml?15379"</span>,
-    <span class="s2">"taxrules_calculation_log"</span>: null
+    <span class="s2">"request_id"</span>: <span class="s2">"6e2e172d-038e-4172-8dfd-434b632b1c8d"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -10933,7 +11065,11 @@ EXEMPLO DE RESPOSTA
 </div>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"nfe"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"access_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53190222769530000131556110000002041100341123"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10990</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e2e172d-038e-4172-8dfd-434b632b1c8d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"remote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"organization_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="err">...</span><span class="w">
@@ -10983,6 +11119,15 @@ curl -X PATCH <span class="se">\</span>
           "motivo": "Desistência do cliente"
         }'</span>
 
+<span class="c"># Enviando Remote ID</span>
+curl -X PATCH <span class="se">\</span>
+    https://app.production.emites.com.br/api/v1/organizations/11/nfe/10990/cancel <span class="se">\</span>
+    -H <span class="s1">'authorization: Bearer 6f42433270bc61d746556b17605db1s4'</span> <span class="se">\</span>
+    -d <span class="s1">'{
+          "motivo": "Desistência do cliente",
+          "remote_id": "123abc"
+        }'</span>
+
 <span class="c"># Usando a chave de acesso</span>
 curl -X PATCH <span class="se">\</span>
     https://app.emites.com.br/api/v1/organizations/11/nfce/53190222769530000131657170000000551642238289/cancel <span class="se">\</span>
@@ -10993,12 +11138,10 @@ EXEMPLO DE RESPOSTA
 
 <span class="o">{</span>
   <span class="s2">"nfce"</span>: <span class="o">{</span>
-    <span class="s2">"id"</span>: 10990,
+    <span class="s2">"id"</span>: 1,
     <span class="s2">"status"</span>: <span class="s2">"processing"</span>,
-    <span class="s2">"data"</span>: <span class="o">{</span>...<span class="o">}</span>,
-    <span class="s2">"danfe_url"</span>: <span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfce/pdf_files/000/015/761/original/danfe.pdf?153719"</span>,
-    <span class="s2">"xml_url"</span>: <span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfce/xml_files/000/015/761/original/nfe.xml?15379"</span>,
-    <span class="s2">"taxrules_calculation_log"</span>: null
+    <span class="s2">"request_id"</span>: <span class="s2">"54a291e4-ddbb-4076-a784-6d1f89c17049"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"123abc"</span>
   <span class="o">}</span>
 <span class="o">}</span>
 </code></pre>
@@ -11013,21 +11156,25 @@ EXEMPLO DE RESPOSTA
 </div>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"nfce"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"access_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53190222769530000131556110000002041100341123"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="err">...</span><span class="w">
-        </span><span class="nt">"resposta_cancelamento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"numero_protocolo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"353190000027203"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"chave_acesso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53190222769530000131657170000000551642238289"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="nt">"data_cancelamento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-22T15:04:19.311-03:00"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"motivo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desistência do cliente"</span><span class="w">
+    </span><span class="nt">"request_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6e2e172d-038e-4172-8dfd-434b632b1c8d"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"remote_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123abc"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"organization_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cancelled"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+      </span><span class="nt">"resposta_cancelamento"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"numero_protocolo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"353190000027203"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"chave_acesso"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53190222769530000131657170000000551642238289"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="nt">"danfe_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfce/pdf_files/000/015/761/original/danfe.pdf?153719"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"xml_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfce/xml_files/000/015/761/original/nfce.xml?15379"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"cancel_xml_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfce/cancel_xml_files/000/010/598/original/cancel_nfce.xml?15781"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"taxrules_calculation_log"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+      </span><span class="nt">"data_cancelamento"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-22T15:04:19.311-03:00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"motivo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desistência do cliente"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"danfe_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfce/pdf_files/000/015/761/original/danfe.pdf?153719"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"xml_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfce/xml_files/000/015/761/original/nfce.xml?15379"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cancel_xml_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://emites-ruby-sandbox.s3.amazonaws.com/nfce/cancel_xml_files/000/010/598/original/cancel_nfce.xml?15781"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"taxrules_calculation_log"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -11476,7 +11623,8 @@ curl -X PATCH <span class="se">\</span>
     -H <span class="s1">'authorization: Bearer 6f42433270bc61d746556b17605db1s4'</span> <span class="se">\</span>
     -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
     -d <span class="s1">'{
-          "correcao": "Carta correcao teste"
+          "correcao": "Carta correcao teste",
+          "remote_id": "abc123"
         }'</span>
 
 <span class="c"># Usando a chave de acesso</span>
@@ -11493,6 +11641,8 @@ EXEMPLO DE RESPOSTA
 <span class="o">{</span>
   <span class="s2">"nfe"</span>: <span class="o">{</span>
     <span class="s2">"id"</span>: 10990,
+    <span class="s2">"request_id"</span>: <span class="s2">"34bc244b-cd15-4dcb-884e-b513896e995c"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
     <span class="s2">"status"</span>: <span class="s2">"corrected"</span>,
     <span class="s2">"data"</span>: <span class="o">{</span>...<span class="o">}</span>,
     <span class="s2">"danfe_url"</span>: <span class="s2">"/system/nfe/pdf_files/000/010/953/original/danfe.pdf?1539874106"</span>,
@@ -11568,6 +11718,7 @@ curl -X POST <span class="se">\</span>
   -H <span class="s1">'content-type: application/json'</span> <span class="se">\</span>
   -d <span class="s1">'{
         "cfe": {
+          "remote_id": "abc123",
           "xml": "&lt;nfeProc xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00"&gt;&lt;enviNFe xmlns="http://www.portalfiscal.inf.br/nfe" versao="4.00"&gt;&lt;NFe&gt;&lt;infNFe&gt;&lt;/infNFe&gt;&lt;/NFe&gt;&lt;/enviNFe&gt;&lt;/nfeProc&gt;",
           "danfe": "JVBERi0xLjMKJcTl8uXrp/Og0MTGCjQgMCBvYmoKPDwgL0xlbmd0aCA1IDAg\nUiAvRmlsdGVyIC9GbGF0ZURlY29kZSA+PgpzdHJlYW0KeAErVAhUKFQwAEJT\nS1M9IwsFCxNDPQtLhaJUhXCFPAV952JDheRiBUMwLE4GqoMqyAVqMINxckAc\nLl0DPUMDS0sLUxOFHKBCFG6GQppCIAAgiBeUCmVuZHN0cmVhbQplbmRvYmoK\nNSAwIG9iago4NAplbmRvYmoKMiAwIG9iago8PCAvVHlwZSAvUGFnZSAvUGFy\nZW50IDMgMCBSIC9SZXNvdXJjZXMgNiAwIFIgL0NvbnRlbnRzIDQgMCBSIC9N\nZWRpYUJveCBbMCAwIDU5NS4yOCA4NDEuODldCj4+CmVuZG9iago2IDAgb2Jq\nCjw8IC9Qcm9jU2V0IFsgL1BERiBdIC9Db2xvclNwYWNlIDw8IC9DczEgNyAw\nIFIgPj4gPj4KZW5kb2JqCjggMCBvYmoKPDwgL0xlbmd0aCA5IDAgUiAvTiAz\nIC9BbHRlcm5hdGUgL0RldmljZVJHQiAvRmlsdGVyIC9GbGF0ZURlY29kZSA+\nPgpzdHJlYW0KeAGdlndUU9kWh8+9N73QEiIgJfQaegkg0jtIFQRRiUmAUAKG\nhCZ2RAVGFBEpVmRUwAFHhyJjRRQLg4Ji1wnyEFDGwVFEReXdjGsJ7601896a\n/cdZ39nnt9fZZ+9917oAUPyCBMJ0WAGANKFYFO7rwVwSE8vE9wIYEAEOWAHA\n4WZmBEf4RALU/L09mZmoSMaz9u4ugGS72yy/UCZz1v9/kSI3QyQGAApF1TY8\nfiYX5QKUU7PFGTL/BMr0lSkyhjEyFqEJoqwi48SvbPan5iu7yZiXJuShGlnO\nGbw0noy7UN6aJeGjjAShXJgl4GejfAdlvVRJmgDl9yjT0/icTAAwFJlfzOcm\noWyJMkUUGe6J8gIACJTEObxyDov5OWieAHimZ+SKBIlJYqYR15hp5ejIZvrx\ns1P5YjErlMNN4Yh4TM/0tAyOMBeAr2+WRQElWW2ZaJHtrRzt7VnW5mj5v9nf\nHn5T/T3IevtV8Sbsz55BjJ5Z32zsrC+9FgD2JFqbHbO+lVUAtG0GQOXhrE/v\nIADyBQC03pzzHoZsXpLE4gwnC4vs7GxzAZ9rLivoN/ufgm/Kv4Y595nL7vtW\nO6YXP4EjSRUzZUXlpqemS0TMzAwOl89k/fcQ/+PAOWnNycMsnJ/AF/GF6FVR\n6JQJhIlou4U8gViQLmQKhH/V4X8YNicHGX6daxRodV8AfYU5ULhJB8hvPQBD\nIwMkbj96An3rWxAxCsi+vGitka9zjzJ6/uf6Hwtcim7hTEEiU+b2DI9kciWi\nLBmj34RswQISkAd0oAo0gS4wAixgDRyAM3AD3iAAhIBIEAOWAy5IAmlABLJB\nPtgACkEx2AF2g2pwANSBetAEToI2cAZcBFfADXALDIBHQAqGwUswAd6BaQiC\n8BAVokGqkBakD5lC1hAbWgh5Q0FQOBQDxUOJkBCSQPnQJqgYKoOqoUNQPfQj\ndBq6CF2D+qAH0CA0Bv0BfYQRmALTYQ3YALaA2bA7HAhHwsvgRHgVnAcXwNvh\nSrgWPg63whfhG/AALIVfwpMIQMgIA9FGWAgb8URCkFgkAREha5EipAKpRZqQ\nDqQbuY1IkXHkAwaHoWGYGBbGGeOHWYzhYlZh1mJKMNWYY5hWTBfmNmYQM4H5\ngqVi1bGmWCesP3YJNhGbjS3EVmCPYFuwl7ED2GHsOxwOx8AZ4hxwfrgYXDJu\nNa4Etw/XjLuA68MN4SbxeLwq3hTvgg/Bc/BifCG+Cn8cfx7fjx/GvyeQCVoE\na4IPIZYgJGwkVBAaCOcI/YQRwjRRgahPdCKGEHnEXGIpsY7YQbxJHCZOkxRJ\nhiQXUiQpmbSBVElqIl0mPSa9IZPJOmRHchhZQF5PriSfIF8lD5I/UJQoJhRP\nShxFQtlOOUq5QHlAeUOlUg2obtRYqpi6nVpPvUR9Sn0vR5Mzl/OX48mtk6uR\na5Xrl3slT5TXl3eXXy6fJ18hf0r+pvy4AlHBQMFTgaOwVqFG4bTCPYVJRZqi\nlWKIYppiiWKD4jXFUSW8koGStxJPqUDpsNIlpSEaQtOledK4tE20Otpl2jAd\nRzek+9OT6cX0H+i99AllJWVb5SjlHOUa5bPKUgbCMGD4M1IZpYyTjLuMj/M0\n5rnP48/bNq9pXv+8KZX5Km4qfJUilWaVAZWPqkxVb9UU1Z2qbapP1DBqJmph\natlq+9Uuq43Pp893ns+dXzT/5PyH6rC6iXq4+mr1w+o96pMamhq+GhkaVRqX\nNMY1GZpumsma5ZrnNMe0aFoLtQRa5VrntV4wlZnuzFRmJbOLOaGtru2nLdE+\npN2rPa1jqLNYZ6NOs84TXZIuWzdBt1y3U3dCT0svWC9fr1HvoT5Rn62fpL9H\nv1t/ysDQINpgi0GbwaihiqG/YZ5ho+FjI6qRq9Eqo1qjO8Y4Y7ZxivE+41sm\nsImdSZJJjclNU9jU3lRgus+0zwxr5mgmNKs1u8eisNxZWaxG1qA5wzzIfKN5\nm/krCz2LWIudFt0WXyztLFMt6ywfWSlZBVhttOqw+sPaxJprXWN9x4Zq42Oz\nzqbd5rWtqS3fdr/tfTuaXbDdFrtOu8/2DvYi+yb7MQc9h3iHvQ732HR2KLuE\nfdUR6+jhuM7xjOMHJ3snsdNJp9+dWc4pzg3OowsMF/AX1C0YctFx4bgccpEu\nZC6MX3hwodRV25XjWuv6zE3Xjed2xG3E3dg92f24+ysPSw+RR4vHlKeT5xrP\nC16Il69XkVevt5L3Yu9q76c+Oj6JPo0+E752vqt9L/hh/QL9dvrd89fw5/rX\n+08EOASsCegKpARGBFYHPgsyCRIFdQTDwQHBu4IfL9JfJFzUFgJC/EN2hTwJ\nNQxdFfpzGC4sNKwm7Hm4VXh+eHcELWJFREPEu0iPyNLIR4uNFksWd0bJR8VF\n1UdNRXtFl0VLl1gsWbPkRoxajCCmPRYfGxV7JHZyqffS3UuH4+ziCuPuLjNc\nlrPs2nK15anLz66QX8FZcSoeGx8d3xD/iRPCqeVMrvRfuXflBNeTu4f7kufG\nK+eN8V34ZfyRBJeEsoTRRJfEXYljSa5JFUnjAk9BteB1sl/ygeSplJCUoykz\nqdGpzWmEtPi000IlYYqwK10zPSe9L8M0ozBDuspp1e5VE6JA0ZFMKHNZZruY\njv5M9UiMJJslg1kLs2qy3mdHZZ/KUcwR5vTkmuRuyx3J88n7fjVmNXd1Z752\n/ob8wTXuaw6thdauXNu5Tnddwbrh9b7rj20gbUjZ8MtGy41lG99uit7UUaBR\nsL5gaLPv5sZCuUJR4b0tzlsObMVsFWzt3WazrWrblyJe0fViy+KK4k8l3JLr\n31l9V/ndzPaE7b2l9qX7d+B2CHfc3em681iZYlle2dCu4F2t5czyovK3u1fs\nvlZhW3FgD2mPZI+0MqiyvUqvakfVp+qk6oEaj5rmvep7t+2d2sfb17/fbX/T\nAY0DxQc+HhQcvH/I91BrrUFtxWHc4azDz+ui6rq/Z39ff0TtSPGRz0eFR6XH\nwo911TvU1zeoN5Q2wo2SxrHjccdv/eD1Q3sTq+lQM6O5+AQ4ITnx4sf4H++e\nDDzZeYp9qukn/Z/2ttBailqh1tzWibakNml7THvf6YDTnR3OHS0/m/989Iz2\nmZqzymdLz5HOFZybOZ93fvJCxoXxi4kXhzpXdD66tOTSna6wrt7LgZevXvG5\ncqnbvfv8VZerZ645XTt9nX297Yb9jdYeu56WX+x+aem172296XCz/ZbjrY6+\nBX3n+l37L972un3ljv+dGwOLBvruLr57/17cPel93v3RB6kPXj/Mejj9aP1j\n7OOiJwpPKp6qP6391fjXZqm99Oyg12DPs4hnj4a4Qy//lfmvT8MFz6nPK0a0\nRupHrUfPjPmM3Xqx9MXwy4yX0+OFvyn+tveV0auffnf7vWdiycTwa9HrmT9K\n3qi+OfrW9m3nZOjk03dp76anit6rvj/2gf2h+2P0x5Hp7E/4T5WfjT93fAn8\n8ngmbWbm3/eE8/sKZW5kc3RyZWFtCmVuZG9iago5IDAgb2JqCjI2MTIKZW5k\nb2JqCjcgMCBvYmoKWyAvSUNDQmFzZWQgOCAwIFIgXQplbmRvYmoKMyAwIG9i\nago8PCAvVHlwZSAvUGFnZXMgL01lZGlhQm94IFswIDAgNTk1LjI4IDg0MS44\nOV0gL0NvdW50IDEgL0tpZHMgWyAyIDAgUiBdID4+CmVuZG9iagoxMCAwIG9i\nago8PCAvVHlwZSAvQ2F0YWxvZyAvUGFnZXMgMyAwIFIgPj4KZW5kb2JqCjEx\nIDAgb2JqCihibGFua1BERikKZW5kb2JqCjEyIDAgb2JqCij+/1wwMDBtXDAw\nMGFcMDAwY1wwMDBPXDAwMFNcMDAwIFwwMDBWXDAwMGVcMDAwclwwMDBzXDAw\nMONcMDAwb1wwMDAgXDAwMDFcMDAwMFwwMDAuXDAwMDFcMDAwNFwwMDAuXDAw\nMDNcMDAwIFwwMDBcKFwwMDBGXDAwMGFcMDAwc1wwMDBlXDAwMCBcMDAwMVww\nMDA4XDAwMERcMDAwMVwwMDAwXDAwMDlcMDAwXClcMDAwIFwwMDBRXDAwMHVc\nMDAwYVwwMDByXDAwMHRcMDAwelwwMDAgXDAwMFBcMDAwRFwwMDBGXDAwMENc\nMDAwb1wwMDBuXDAwMHRcMDAwZVwwMDB4XDAwMHQpCmVuZG9iagoxMyAwIG9i\nagooUGFnZXMpCmVuZG9iagoxNCAwIG9iagooRDoyMDE5MDMxMTE5MzgwOVow\nMCcwMCcpCmVuZG9iagoxIDAgb2JqCjw8IC9UaXRsZSAxMSAwIFIgL1Byb2R1\nY2VyIDEyIDAgUiAvQ3JlYXRvciAxMyAwIFIgL0NyZWF0aW9uRGF0ZSAxNCAw\nIFIgL01vZERhdGUKMTQgMCBSID4+CmVuZG9iagp4cmVmCjAgMTUKMDAwMDAw\nMDAwMCA2NTUzNSBmIAowMDAwMDAzNjU5IDAwMDAwIG4gCjAwMDAwMDAxOTgg\nMDAwMDAgbiAKMDAwMDAwMzE0NCAwMDAwMCBuIAowMDAwMDAwMDIyIDAwMDAw\nIG4gCjAwMDAwMDAxODAgMDAwMDAgbiAKMDAwMDAwMDMwOCAwMDAwMCBuIAow\nMDAwMDAzMTA5IDAwMDAwIG4gCjAwMDAwMDAzNzYgMDAwMDAgbiAKMDAwMDAw\nMzA4OSAwMDAwMCBuIAowMDAwMDAzMjMzIDAwMDAwIG4gCjAwMDAwMDMyODMg\nMDAwMDAgbiAKMDAwMDAwMzMxMCAwMDAwMCBuIAowMDAwMDAzNTkzIDAwMDAw\nIG4gCjAwMDAwMDM2MTcgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSAxNSAv\nUm9vdCAxMCAwIFIgL0luZm8gMSAwIFIgL0lEIFsgPDM4NzkzYjhlZmU0YTBj\nZDY2MTUxNzUyOTM4YzM4YTg4Pgo8Mzg3OTNiOGVmZTRhMGNkNjYxNTE3NTI5\nMzhjMzhhODg+IF0gPj4Kc3RhcnR4cmVmCjM3NjQKJSVFT0YK\n",
           "cliente": {
@@ -11834,8 +11985,12 @@ EXEMPLO DE RESPOSTA
 
 <span class="o">{</span>
   <span class="s2">"cfe"</span>: <span class="o">{</span>
+    <span class="s2">"access_key"</span>: null,
     <span class="s2">"id"</span>: 10990,
+    <span class="s2">"request_id"</span>: <span class="s2">"3c71c63e-b6e4-42c8-95fd-2e7cd3c0b408"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
     <span class="s2">"status"</span>: <span class="s2">"processing"</span>,
+    <span class="s2">"organization_id"</span>: 1,
     <span class="s2">"data"</span>:  <span class="o">{</span>...<span class="o">}</span>
   <span class="o">}</span>
 <span class="o">}</span>
@@ -11843,7 +11998,7 @@ EXEMPLO DE RESPOSTA
 
           <h1 id="request-tracker-request-id">Request Tracker (Request ID)</h1>
 
-<p>Para consultar as informações de um documento fiscal ou mais pelo ID da requisição (Request ID), é necessário realizar uma requisição GET para o seguinte endereço:</p>
+<p>Para consultar as informações de um documento fiscal ou mais pelo ID da requisição (Request ID) ou pelo ID próprio enviado (Remote ID), é necessário realizar uma requisição GET para o seguinte endereço:</p>
 
 <div class="api-endpoint">
     <div class="endpoint-data">
@@ -11851,23 +12006,147 @@ EXEMPLO DE RESPOSTA
         <h6>/api/v1/request_tracker/{request_id}</h6>
     </div>
 </div>
+
+<h2 id="exemplo-de-busca-pelo-id-de-autoriza-o-para-uma-emiss-o-single">Exemplo de busca pelo ID de autorização para uma emissão single</h2>
 <pre class="highlight shell"><code>EXEMPLO DE REQUISIÇÃO
 
+<span class="c">### Usando Request ID</span>
 curl --request GET <span class="se">\</span>
   --url http://app.production.emites.com.br/api/v1/request_tracker/491dd276-b7d9-4623-beb1-234c66a80be3 <span class="se">\</span>
   --header <span class="s1">'authorization: Bearer 6f42433270bc61d746556b17605db05a'</span> <span class="se">\</span>
   --header <span class="s1">'content-type: application/json'</span>
 
+<span class="c">### Usando Remote ID</span>
+curl --request GET <span class="se">\</span>
+  --url http://app.production.emites.com.br/api/v1/request_tracker/abc123 <span class="se">\</span>
+  --header <span class="s1">'authorization: Bearer 6f42433270bc61d746556b17605db05a'</span> <span class="se">\</span>
+  --header <span class="s1">'content-type: application/json'</span>
 
 EXEMPLO DE RESPOSTA
 <span class="o">{</span>
   <span class="s2">"request_tracker"</span>: <span class="o">{</span>
-    <span class="s2">"id"</span>: <span class="s2">"491dd276-b7d9-4623-beb1-234c66a80be3"</span>,
+    <span class="s2">"request_id"</span>: <span class="s2">"491dd276-b7d9-4623-beb1-234c66a80be3"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
+    <span class="s2">"request_kind"</span>: <span class="s2">"authorization"</span>,
+    <span class="s2">"client_version"</span>: <span class="s2">"client 2.0"</span>,
+    <span class="s2">"incoming_requests"</span>: <span class="o">[</span>
+      <span class="s2">"path/to/incoming_request/file.json"</span>
+    <span class="o">]</span>,
     <span class="s2">"nfces"</span>: <span class="o">[</span>
       <span class="o">{</span>
+        <span class="s2">"access_key"</span>: null,
+        <span class="s2">"id"</span>: 1,
+        <span class="s2">"organization_id"</span>: 1,
         <span class="s2">"status"</span>: <span class="s2">"processing"</span>,
-        <span class="s2">"id"</span>: 7569,
-        <span class="s2">"organization_id"</span>: 399
+        <span class="s2">"messages"</span>: null,
+        <span class="s2">"xml_url"</span>: null,
+        <span class="s2">"danfe_url"</span>: null,
+        <span class="s2">"request_id"</span>: null,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"other_trackers"</span>: <span class="o">[]</span>
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h2 id="exemplo-de-busca-pelo-id-de-autoriza-o-para-uma-emiss-o-batch">Exemplo de busca pelo ID de autorização para uma emissão batch</h2>
+<pre class="highlight shell"><code>EXEMPLO DE RESPOSTA
+<span class="o">{</span>
+  <span class="s2">"request_tracker"</span>: <span class="o">{</span>
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
+    <span class="s2">"request_kind"</span>: <span class="s2">"authorization"</span>,
+    <span class="s2">"client_version"</span>: <span class="s2">"client 2.0"</span>,
+    <span class="s2">"incoming_requests"</span>: <span class="o">[</span>
+      <span class="s2">"path/to/incoming_request/file.json"</span>
+    <span class="o">]</span>,
+    <span class="s2">"nfce_batches"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"id"</span>: 1,
+        <span class="s2">"organization_id"</span>: 1,
+        <span class="s2">"nfces"</span>: <span class="o">[</span>
+          <span class="o">{</span>
+            <span class="s2">"access_key"</span>: <span class="s2">"53190222769530000131556110000002001616311935"</span>,
+            <span class="s2">"id"</span>: 2,
+            <span class="s2">"organization_id"</span>: 1,
+            <span class="s2">"status"</span>: <span class="s2">"succeeded"</span>,
+            <span class="s2">"messages"</span>: null,
+            <span class="s2">"xml_url"</span>: <span class="s2">"http://download-xml-url.com.br"</span>,
+            <span class="s2">"danfe_url"</span>: <span class="s2">"http://download-danfe-url.com.br"</span>,
+            <span class="s2">"request_id"</span>: <span class="s2">"c1faf5c3-0f13-4376-800d-dc814c3932be"</span>,
+            <span class="s2">"remote_id"</span>: null,
+            <span class="s2">"other_trackers"</span>: <span class="o">[]</span>
+          <span class="o">}</span>
+        <span class="o">]</span>
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h2 id="exemplo-de-busca-pelo-id-de-autoriza-o-para-uma-nota-cancelada">Exemplo de busca pelo ID de autorização para uma nota cancelada</h2>
+<pre class="highlight shell"><code>EXEMPLO DE RESPOSTA
+
+<span class="o">{</span>
+  <span class="s2">"request_tracker"</span>: <span class="o">{</span>
+    <span class="s2">"request_id"</span>: <span class="s2">"7d391761-1681-4e9c-ac6e-d47389f211f0"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
+    <span class="s2">"request_kind"</span>: <span class="s2">"authorization"</span>,
+    <span class="s2">"client_version"</span>: <span class="s2">"client 2.0"</span>,
+    <span class="s2">"incoming_requests"</span>: <span class="o">[</span>
+      <span class="s2">"path/to/incoming_request/file.json"</span>
+    <span class="o">]</span>,
+    <span class="s2">"nfes"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"access_key"</span>: <span class="s2">"33210127197888003680557590000003591034461550"</span>,
+        <span class="s2">"id"</span>: 3,
+        <span class="s2">"organization_id"</span>: 1,
+        <span class="s2">"status"</span>: <span class="s2">"cancelled"</span>,
+        <span class="s2">"messages"</span>: null,
+        <span class="s2">"xml_url"</span>: <span class="s2">"http://download-xml-url.com.br"</span>,
+        <span class="s2">"danfe_url"</span>: <span class="s2">"http://download-danfe-url.com.br"</span>,
+        <span class="s2">"request_id"</span>: null,
+        <span class="s2">"remote_id"</span>: null,
+        <span class="s2">"other_trackers"</span>: <span class="o">[</span>
+          <span class="o">{</span>
+            <span class="s2">"request_id"</span>: <span class="s2">"8fe845d5-3a1c-4810-aea1-96e008012753"</span>,
+            <span class="s2">"remote_id"</span>: <span class="s2">"foobar123"</span>,
+            <span class="s2">"request_type"</span>: <span class="s2">"cancel"</span>,
+            <span class="s2">"status"</span>: <span class="s2">"cancelled"</span>,
+            <span class="s2">"messages"</span>: null
+          <span class="o">}</span>
+        <span class="o">]</span>
+      <span class="o">}</span>
+    <span class="o">]</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+
+<h2 id="exemplo-de-busca-pelo-id-de-cancelamento">Exemplo de busca pelo ID de cancelamento</h2>
+<pre class="highlight shell"><code>EXEMPLO DE RESPOSTA
+
+<span class="o">{</span>
+  <span class="s2">"request_tracker"</span>: <span class="o">{</span>
+    <span class="s2">"request_id"</span>: <span class="s2">"8fe845d5-3a1c-4810-aea1-96e008012754"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"foobar124"</span>,
+    <span class="s2">"request_kind"</span>: <span class="s2">"cancel"</span>,
+    <span class="s2">"client_version"</span>: <span class="s2">"foo2"</span>,
+    <span class="s2">"incoming_requests"</span>: <span class="o">[</span>
+      <span class="s2">"path/to/incoming_request/file.json"</span>
+    <span class="o">]</span>,
+    <span class="s2">"nfes"</span>: <span class="o">[</span>
+      <span class="o">{</span>
+        <span class="s2">"access_key"</span>: <span class="s2">"33210127197888003680557590000003591034461550"</span>,
+        <span class="s2">"id"</span>: 4,
+        <span class="s2">"organization_id"</span>: 1,
+        <span class="s2">"status"</span>: <span class="s2">"cancel_rejected"</span>,
+        <span class="s2">"messages"</span>: <span class="s2">"SEFAZ indisponível no momento, por favor tente mais tarde"</span>,
+        <span class="s2">"xml_url"</span>: <span class="s2">"http://download-xml-url.com.br"</span>,
+        <span class="s2">"danfe_url"</span>: <span class="s2">"http://download-danfe-url.com.br"</span>,
+        <span class="s2">"request_id"</span>: <span class="s2">"2a82ab3f-9d64-40e4-a0b3-63b050235107"</span>,
+        <span class="s2">"remote_id"</span>: <span class="s2">"foobar543"</span>,
+        <span class="s2">"other_trackers"</span>: null
       <span class="o">}</span>
     <span class="o">]</span>
   <span class="o">}</span>
@@ -11900,6 +12179,7 @@ curl -X POST <span class="se">\</span>
     "nfe_batch": {
         "serie": 22,
         "engine_de_calculo": "nexaas",
+        "remote_id": "abc123",
         "nfes": [
             {
                 "cliente": {
@@ -12435,6 +12715,8 @@ curl -X POST <span class="se">\</span>
 
 EXEMPLO DE RESPOSTA
 <span class="o">{</span>
+    <span class="s2">"request_id"</span>: <span class="s2">"3761e644-0f44-4c5e-8d25-9cf276668d44"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"abc123"</span>,
     <span class="s2">"nfe_batch"</span>: <span class="o">{</span>
         <span class="s2">"lote"</span>: 1,
         <span class="s2">"serie"</span>: 22,
@@ -13056,6 +13338,7 @@ curl -X POST <span class="se">\</span>
     "nfce_batch": {
         "serie": "233",
         "engine_de_calculo": "nexaas",
+        "remote_id": "123abc",
         "nfces": [
             {
                 "dados_gerais": {
@@ -13162,6 +13445,8 @@ curl -X POST <span class="se">\</span>
 
 EXEMPLO DE RESPOSTA
 <span class="o">{</span>
+    <span class="s2">"request_id"</span>: <span class="s2">"3761e644-0f44-4c5e-8d25-9cf276668d44"</span>,
+    <span class="s2">"remote_id"</span>: <span class="s2">"123abc"</span>,
     <span class="s2">"nfce_batch"</span>: <span class="o">{</span>
         <span class="s2">"lote"</span>: <span class="s2">"1"</span>,
         <span class="s2">"serie"</span>: <span class="s2">"233"</span>,
