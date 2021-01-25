@@ -1160,3 +1160,11 @@ Grupo informativo de resposta da emissao da NF-e.
  numero_protocolo | nProt | - | - | - | Número do Protocolo da NF-e
  chave_acesso | chNFe | - | - | - | Chave de Acesso da NF-e
  erros | - | - | - | - | Lista erros da emissão, podendo ser uma mensagem de rejeição da SEFAZ ou uma lista de erros de validação de Schema
+
+## remote_id (XML: N/A)
+
+Identificador único da requisição gerado pelo requisitante para controle próprio. 
+
+    Campo                       |  Campo no XML   |  Obrigatório        |     Tipo                |    Formato e tamanho               |  Observações
+--------------------------------|-----------------|---------------------|-------------------------|------------------------------------|-----------------------------------------------------------
+ remote_id | - | Não | Texto | - | O campo aceita apenas caracteres ou caracteres juntamente com dígitos numéricos e/ou caracteres especiais, não devendo ser informado apenas números.

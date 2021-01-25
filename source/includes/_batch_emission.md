@@ -28,6 +28,7 @@ curl -X POST \
           "serie": 1,
           "sincronicidade": 0,
           "uf": 35,
+          "remote_id": "dfg123",
           "nfes": [
             {
               "cliente": {
@@ -295,11 +296,17 @@ EXEMPLO DE RESPOSTA
 
 {
   "nfe_batch": {
-    "id": 1099,
+    "id": 1,
     "key": null,
+    "request_id": "7d391761-1681-4e9c-ac6e-d47389f211f0",
+    "remote_id": "dfg123",
     "nfes": [
       {
-        "id": 10990,
+        "access_key": null,
+        "id": 1,
+        "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]
@@ -341,6 +348,7 @@ curl -X POST \
           "serie": "1",
           "sincronicidade": "0",
           "uf": "53",
+          "remote_id": "123dfg",
           "nfces": [
             {
               "dados_gerais": {
@@ -528,11 +536,17 @@ EXEMPLO DE RESPOSTA
 
 {
   "nfce_batch": {
-    "id": 1099,
+    "id": 1,
     "key": null,
+    "request_id": "263f6dd1-ba23-44a2-82f5-2e34bfa6b5c2",
+    "remote_id": "123dfg",
     "nfces": [
       {
-        "id": 10990,
+        "access_key": null,
+        "id": 1,
+        "request_id": "ba951765-880c-4745-8eb1-8ca24e6b8566",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]

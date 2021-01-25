@@ -25,6 +25,7 @@ curl -X POST \
   -d '{
     "nfe": {
       "engine_de_calculo": "",
+      "remote_id": "abc123",
       "contingencia": false,
       "cliente": {
         "cpf_cnpj": "46728754000163",
@@ -290,7 +291,11 @@ EXEMPLO DE RESPOSTA
 
 {
   "nfe": {
-    "id": 10990,
+    "access_key": "",
+    "id": 1,
+    "request_id": "a6d26041-6ff2-41f4-ad93-78f7a3989bab",
+    "remote_id": "abc123",
+    "organization_id": 1,
     "status": "processing"
   }
 }
@@ -327,6 +332,7 @@ curl -X POST \
   -d '{
     "nfce": {
       "engine_de_calculo": "",
+      "remote_id": "123abc",
       "dados_gerais": {
         "csc": "000001",
         "id_token": "A16A5A2DI8FA443FB8710D9AB8EB5432",
@@ -510,7 +516,11 @@ EXEMPLO DE RESPOSTA
 
 {
   "nfce": {
-    "id": 1099,
+    "access_key": "",
+    "id": 1,
+    "request_id": "4a235336-1fc0-4cf8-8ab9-0c351c697201",
+    "remote_id": "123abc",
+    "organization_id": 1,
     "status": "processing"
   }
 }
