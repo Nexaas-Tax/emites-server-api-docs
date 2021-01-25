@@ -48,7 +48,8 @@ curl -X PATCH \
     -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
     -H 'content-type: application/json' \
     -d '{
-          "correcao": "Carta correcao teste"
+          "correcao": "Carta correcao teste",
+          "remote_id": "abc123"
         }'
 
 # Usando a chave de acesso
@@ -65,6 +66,8 @@ EXEMPLO DE RESPOSTA
 {
   "nfe": {
     "id": 10990,
+    "request_id": "34bc244b-cd15-4dcb-884e-b513896e995c",
+    "remote_id": "abc123",
     "status": "corrected",
     "data": {...},
     "danfe_url": "/system/nfe/pdf_files/000/010/953/original/danfe.pdf?1539874106",

@@ -33,6 +33,15 @@ curl -X PATCH \
           "motivo": "Desistência do cliente"
         }'
 
+# Enviando Remote ID
+curl -X PATCH \
+    https://app.production.emites.com.br/api/v1/organizations/11/nfe/10990/cancel \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
+    -d '{
+          "motivo": "Desistência do cliente",
+          "remote_id": "abc123"
+        }'
+
 # Usando a chave de acesso
 curl -X PATCH \
     https://app.emites.com.br/api/v1/organizations/11/nfe/53190222769530000131556110000002041100341123/cancel \
@@ -42,12 +51,10 @@ EXEMPLO DE RESPOSTA
 
 {
   "nfe": {
-    "id": 10990,
+    "id": 1,
     "status": "processing",
-    "data": {...},
-    "danfe_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfe/pdf_files/000/015/761/original/danfe.pdf?153719",
-    "xml_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfe/xml_files/000/015/761/original/nfe.xml?15379",
-    "taxrules_calculation_log": null
+    "request_id": "6e2e172d-038e-4172-8dfd-434b632b1c8d",
+    "remote_id": "abc123"
   }
 }
 ```
@@ -64,7 +71,11 @@ Após o processamento da solicitação de cancelamento da NF-e, o XML do evento 
 ```
 {
   "nfe": {
+    "access_key": "53190222769530000131556110000002041100341123",
     "id": 10990,
+    "request_id": "6e2e172d-038e-4172-8dfd-434b632b1c8d",
+    "remote_id": "abc123",
+    "organization_id": 1,
     "status": "cancelled",
     "data": {
       ...
@@ -116,6 +127,15 @@ curl -X PATCH \
           "motivo": "Desistência do cliente"
         }'
 
+# Enviando Remote ID
+curl -X PATCH \
+    https://app.production.emites.com.br/api/v1/organizations/11/nfe/10990/cancel \
+    -H 'authorization: Bearer 6f42433270bc61d746556b17605db1s4' \
+    -d '{
+          "motivo": "Desistência do cliente",
+          "remote_id": "123abc"
+        }'
+
 # Usando a chave de acesso
 curl -X PATCH \
     https://app.emites.com.br/api/v1/organizations/11/nfce/53190222769530000131657170000000551642238289/cancel \
@@ -126,12 +146,10 @@ EXEMPLO DE RESPOSTA
 
 {
   "nfce": {
-    "id": 10990,
+    "id": 1,
     "status": "processing",
-    "data": {...},
-    "danfe_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/pdf_files/000/015/761/original/danfe.pdf?153719",
-    "xml_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/xml_files/000/015/761/original/nfe.xml?15379",
-    "taxrules_calculation_log": null
+    "request_id": "54a291e4-ddbb-4076-a784-6d1f89c17049",
+    "remote_id": "123abc"
   }
 }
 ```
@@ -148,21 +166,25 @@ Após o processamento da solicitação de cancelamento da NFC-e, o XML do evento
 ```
 {
   "nfce": {
+    "access_key": "53190222769530000131556110000002041100341123",
     "id": 5,
-      "status": "cancelled",
-      "data": {
-        ...
-        "resposta_cancelamento": {
-          "numero_protocolo": "353190000027203",
-          "chave_acesso": "53190222769530000131657170000000551642238289"
-        },
-        "data_cancelamento": "2019-02-22T15:04:19.311-03:00",
-        "motivo": "Desistência do cliente"
+    "request_id": "6e2e172d-038e-4172-8dfd-434b632b1c8d",
+    "remote_id": "123abc",
+    "organization_id": 1,
+    "status": "cancelled",
+    "data": {
+      ...
+      "resposta_cancelamento": {
+        "numero_protocolo": "353190000027203",
+        "chave_acesso": "53190222769530000131657170000000551642238289"
       },
-      "danfe_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/pdf_files/000/015/761/original/danfe.pdf?153719",
-      "xml_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/xml_files/000/015/761/original/nfce.xml?15379",
-      "cancel_xml_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/cancel_xml_files/000/010/598/original/cancel_nfce.xml?15781",
-      "taxrules_calculation_log": null
+      "data_cancelamento": "2019-02-22T15:04:19.311-03:00",
+      "motivo": "Desistência do cliente"
+    },
+    "danfe_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/pdf_files/000/015/761/original/danfe.pdf?153719",
+    "xml_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/xml_files/000/015/761/original/nfce.xml?15379",
+    "cancel_xml_url": "http://emites-ruby-sandbox.s3.amazonaws.com/nfce/cancel_xml_files/000/010/598/original/cancel_nfce.xml?15781",
+    "taxrules_calculation_log": null
   }
 }
 ```
