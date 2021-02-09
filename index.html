@@ -4458,6 +4458,14 @@ EXEMPLO DE RESPOSTA
 <td>aaaa-mm-ddThh:mm:ss-03:00</td>
 <td>Data e Hora da entrada em contingência</td>
 </tr>
+<tr>
+<td>indicador_intermediador</td>
+<td>indIntermed</td>
+<td>Não</td>
+<td>Numérico</td>
+<td>1 dígito</td>
+<td>Indicador do Intermediador/Marketplace. Seleção entre:<br>0 = Operação sem intermediador (em site ou plataforma própria);<br>1 = Operação em site ou plataforma de terceiros (intermediários/marketplace).<br></td>
+</tr>
 </tbody></table>
 
 <h2 id="cliente-xml-dest">cliente (XML: dest)</h2>
@@ -15757,6 +15765,17 @@ Os webhooks também são conhecidos como Callbacks ou Reverse API .  </p>
   </span><span class="nt">"object_id"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
   </span><span class="nt">"organization_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
   </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"cancelled"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h2 id="nota-emitida-em-conting-ncia-offline">Nota emitida em contingência offline</h2>
+
+<p>Quando a NF é emitida em contingência offline no server. Nesta etapa será enviado o seguinte webhook:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"object_type"</span><span class="p">:</span><span class="s2">"NFCe"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"object_id"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"organization_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"event"</span><span class="p">:</span><span class="s2">"pending_offline_contingency_authorization"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
