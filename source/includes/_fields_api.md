@@ -49,6 +49,7 @@ Contém informações gerais e metadados sobre a NF-e. Seus atributos são:
     tp_emis                     |   tpEmis     |  Sim quando Contingência     |     Numérico        |    1 dígito | 4=EPEC; <br>6= SVC-AN; <br>7=SVC-RS. <br><br>(Default: 1=Normal)
     just_contingencia           |   xJust      |  Sim quando Contingência     |     Texto e/ou número        |    15 a 256 caracteres   | Justificativa da entrada em contingência
     data_hora_contingencia      |   dhCont     |  Sim quando Contingência     |     Data    |  aaaa-mm-ddThh:mm:ss-03:00 | Data e Hora da entrada em contingência
+    indicador_intermediador | indIntermed | Não | Numérico | 1 dígito | Indicador do Intermediador/Marketplace. Seleção entre:<br>0 = Operação sem intermediador (em site ou plataforma própria);<br>1 = Operação em site ou plataforma de terceiros (intermediários/marketplace).<br>
 
 ## cliente (XML: dest)
 
