@@ -5039,6 +5039,14 @@ EXEMPLO DE RESPOSTA
 <td>Código de barras. Preencher com o código de barra GTIN-8, GTIN-12, GTIN-13 ou GTIN-14 (antigos códigos EAN, UPC e DUN- 14). Não informar este campo se o produto não possuir este código.</td>
 </tr>
 <tr>
+<td>codigo_barra</td>
+<td>cBarra</td>
+<td>Não</td>
+<td>Texto</td>
+<td>Até 30 caracteres</td>
+<td>Código de barras diferente do padrão GTIN.</td>
+</tr>
+<tr>
 <td>descricao</td>
 <td>xProd</td>
 <td>Sim</td>
@@ -5125,6 +5133,14 @@ EXEMPLO DE RESPOSTA
 <td>Numérico</td>
 <td>8, 12, 13 ou 14 dígitos</td>
 <td></td>
+</tr>
+<tr>
+<td>codigo_barra_trib</td>
+<td>cBarraTrib</td>
+<td>Não</td>
+<td>Texto</td>
+<td>Até 30 caracteres</td>
+<td>Código de Barras próprio ou de terceiros, que seja diferente do padrão GTIN, correspondente àquele da menor unidade comercializável identificado por Código de Barras.</td>
 </tr>
 <tr>
 <td>unidade_tributaria</td>
@@ -8957,6 +8973,38 @@ placa</p>
 <td>Texto</td>
 <td>Até 60 caracteres</td>
 <td>Descrição do local de despacho.</td>
+</tr>
+</tbody></table>
+
+<h2 id="informacoes_intermediador-xml-infintermed">informacoes_intermediador (XML: infIntermed)</h2>
+
+<p>Grupo com informações sobre o intermediador/marketplace, deve ser informado quando o attributo <code class="prettyprint">indicador_intermediador</code> for <code class="prettyprint">1</code>.</p>
+
+<table><thead>
+<tr>
+<th>Campo</th>
+<th>Campo no XML</th>
+<th>Obrigatório</th>
+<th>Tipo</th>
+<th>Formato e tamanho</th>
+<th>Observações</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cnpj</td>
+<td>CNPJ</td>
+<td>Sim</td>
+<td>Numérico</td>
+<td>14 dígitos</td>
+<td>CNPJ do intermediador (marketplace) da Transação</td>
+</tr>
+<tr>
+<td>identificador_cadastro_intermediador</td>
+<td>idCadIntTran</td>
+<td>Sim</td>
+<td>Texto</td>
+<td>Até 60 caracteres</td>
+<td>Identificador de cadastrado no intermediador/marketplace (ex: seu nome de usuário na plataforma)</td>
 </tr>
 </tbody></table>
 
