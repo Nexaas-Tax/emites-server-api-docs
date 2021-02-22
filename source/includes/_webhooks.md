@@ -158,6 +158,19 @@ Quando o cancelamento da NF é aceito pela SEFAZ. Nesta etapa será enviado o se
 }
 ```
 
+## Nota emitida em contingência offline
+
+Quando a NF é emitida em contingência offline no server. Nesta etapa será enviado o seguinte webhook:
+
+```
+{
+  "object_type":"NFCe",
+  "object_id":5,
+  "organization_id":1,
+  "event":"pending_offline_contingency_authorization"
+}
+```
+
 ## Cancelamento rejeitado
 
 Quando o cancelamento da NF é rejeitado pela SEFAZ. Nesta etapa será enviado o seguinte webhook:

@@ -5,37 +5,22 @@
 <div class="api-endpoint">
   <div class="endpoint-data">
     <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfe/{nfe_id}  </h6>
+    <h6>/api/v1/organizations/{organization_id}/nfe/{id}  </h6>
   </div>
 </div>
 
-ou pela chave de acesso:
-
-<div class="api-endpoint">
-  <div class="endpoint-data">
-    <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfe/{chave_acesso}  </h6>
-  </div>
-</div>
+Obs: O "id" pode ser preenchido com o nfe_id, chave de acesso da nota, request_id ou remote_id.
 
 ### E para consultar uma NFC-e, a seguinte:
 
 <div class="api-endpoint">
   <div class="endpoint-data">
     <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfce/{nfce_id}  </h6>
+    <h6>/api/v1/organizations/{organization_id}/nfce/{id}  </h6>
   </div>
 </div>
 
-ou pela chave de acesso:
-
-<div class="api-endpoint">
-  <div class="endpoint-data">
-    <i class="label label-get">GET</i>
-    <h6>/api/v1/organizations/{organization_id}/nfce/{chave_acesso}  </h6>
-  </div>
-</div>
-
+Obs: O "id" pode ser preenchido com o nfce_id, chave de acesso, request_id ou remote_id.
 
 ### Para consultar o Valor Total por código de operação (CFOP) em um determinado período fixo:
 
@@ -71,6 +56,7 @@ curl -X POST \
           "sincronicidade": 0,
           "serie": 611,
           "uf": 53,
+          "remote_id": "abc123",
           "nfes": [
             {
               "dados_gerais": {
@@ -207,11 +193,17 @@ EXEMPLO DE RESPOSTA
 
 {
   "nfe_batch": {
-    "id": 169,
+    "id": 1,
     "key": null,
+    "request_id": "7d391761-1681-4e9c-ac6e-d47389f211f0",
+    "remote_id": "abc123",
     "nfes": [
       {
-        "id": 350, # Identificador da NF-e
+        "access_key": null,
+        "id": 350,
+        "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]
@@ -236,7 +228,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfe": {
+    "access_key": "53190222769530000131556110000002001616311935",
     "id": 350,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": "abc123",
+    "organization_id": 1,
     "status": "succeeded",
     "data": {
       ...
@@ -265,7 +261,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfe": {
+    "access_key": "53190222769530000131556110000002001616311935",
     "id": 350,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": "abc123",
+    "organization_id": 1,
     "status": "succeeded",
     "data": {
       ...
@@ -435,11 +435,17 @@ EXEMPLO DE RESPOSTA
 
 {
   "nfe_batch": {
-    "id": 170,
+    "id": 1,
     "key": null,
+    "request_id": "7d391761-1681-4e9c-ac6e-d47389f211f0",
+    "remote_id": null,
     "nfes": [
       {
+        "access_key": null,
         "id": 351, # Identificador da NF-e
+        "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]
@@ -464,7 +470,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfe": {
+    "access_key": null,
     "id": 351,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": null,
+    "organization_id": 1,
     "status": "rejected",
     "data": {
       ...
@@ -635,9 +645,15 @@ EXEMPLO DE RESPOSTA
   "nfe_batch": {
     "id": 170,
     "key": null,
+    "request_id": "7d391761-1681-4e9c-ac6e-d47389f211f0",
+    "remote_id": null,
     "nfes": [
       {
-        "id": 351, # Identificador da NF-e
+        "access_key": null,
+        "id": 351,
+        "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]
@@ -662,7 +678,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfe": {
+    "access_key": null,
     "id": 351,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": null,
+    "organization_id": 1,
     "status": "denegated",
     "data": {
       ...
@@ -833,9 +853,15 @@ EXEMPLO DE RESPOSTA
   "nfe_batch": {
     "id": 171,
     "key": null,
+    "request_id": "7d391761-1681-4e9c-ac6e-d47389f211f0",
+    "remote_id": null,
     "nfes": [
       {
+        "access_key": null,
         "id": 352, # Identificador da NF-e
+        "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]
@@ -860,7 +886,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfe": {
+    "access_key": null,
     "id": 352,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": null,
+    "organization_id": 1,
     "status": "rejected",
     "data": {
       ...
@@ -895,6 +925,7 @@ curl -X POST \
           "sincronicidade": 0,
           "uf": "53",
           "serie": 717,
+          "remote_id": "123abc",
           "nfces": [
             {
               "dados_gerais": {
@@ -980,9 +1011,15 @@ EXEMPLO DE RESPOSTA
   "nfce_batch": {
     "id": 53,
     "key": null,
+    "request_id": "7d391761-1681-4e9c-ac6e-d47389f211f0",
+    "remote_id": "123abc",
     "nfces": [
       {
+        "access_key": null,
         "id": 109, # Identificador da NFC-e
+        "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]
@@ -1007,7 +1044,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfce": {
+    "access_key": "53190222769530000131657170000000501127125918",
     "id": 109,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": null,
+    "organization_id": 1,
     "status": "succeeded",
     "data": {
       ...
@@ -1036,7 +1077,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfce": {
+    "access_key": "53190222769530000131657170000000501127125918",
     "id": 109,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": null,
+    "organization_id": 1,
     "status": "succeeded",
     "data": {
       ...
@@ -1156,9 +1201,15 @@ EXEMPLO DE RESPOSTA
   "nfce_batch": {
     "id": 53,
     "key": null,
+    "request_id": "7d391761-1681-4e9c-ac6e-d47389f211f0",
+    "remote_id": null,
     "nfces": [
       {
+        "access_key": null,
         "id": 110, # Identificador da NFC-e
+        "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]
@@ -1183,7 +1234,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfce": {
+    "access_key": null,
     "id": 110,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": null,
+    "organization_id": 1,
     "status": "rejected",
     "data": {
       ...
@@ -1302,9 +1357,15 @@ EXEMPLO DE RESPOSTA
   "nfce_batch": {
     "id": 53,
     "key": null,
+    "request_id": "7d391761-1681-4e9c-ac6e-d47389f211f0",
+    "remote_id": null,
     "nfces": [
       {
+        "access_key": null,
         "id": 110, # Identificador da NFC-e
+        "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]
@@ -1329,7 +1390,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfce": {
+    "access_key": null,
     "id": 110,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": null,
+    "organization_id": 1,
     "status": "denegated",
     "data": {
       ...
@@ -1443,12 +1508,19 @@ curl -X POST \
 
 
 EXEMPLO DE RESPOSTA
+
+{
   "nfce_batch": {
     "id": 53,
     "key": null,
+    "request_id": "7d391761-1681-4e9c-ac6e-d47389f211f0",
+    "remote_id": null,
     "nfces": [
       {
         "id": 111, # Identificador da NFC-e
+        "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+        "remote_id": null,
+        "organization_id": 1,
         "status": "processing"
       }
     ]
@@ -1473,7 +1545,11 @@ EXEMPLO DE RESPOSTA:
 
 {
   "nfce": {
+    "access_key": null,
     "id": 111,
+    "request_id": "c1faf5c3-0f13-4376-800d-dc814c3932be",
+    "remote_id": null,
+    "organization_id": 1,
     "status": "rejected",
     "data": {
       ...

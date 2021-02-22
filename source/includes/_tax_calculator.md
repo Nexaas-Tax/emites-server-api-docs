@@ -26,6 +26,7 @@ curl -X POST \
 	"nfe_batch": {
         "serie": 22,
         "engine_de_calculo": "nexaas",
+        "remote_id": "abc123",
         "nfes": [
             {
                 "cliente": {
@@ -561,6 +562,8 @@ curl -X POST \
 
 EXEMPLO DE RESPOSTA
 {
+    "request_id": "3761e644-0f44-4c5e-8d25-9cf276668d44",
+    "remote_id": "abc123",
 	"nfe_batch": {
         "lote": 1,
         "serie": 22,
@@ -1184,6 +1187,7 @@ curl -X POST \
 	"nfce_batch": {
         "serie": "233",
         "engine_de_calculo": "nexaas",
+        "remote_id": "123abc",
         "nfces": [
             {
                 "dados_gerais": {
@@ -1290,6 +1294,8 @@ curl -X POST \
 
 EXEMPLO DE RESPOSTA
 {
+    "request_id": "3761e644-0f44-4c5e-8d25-9cf276668d44",
+    "remote_id": "123abc",
 	"nfce_batch": {
         "lote": "1",
         "serie": "233",

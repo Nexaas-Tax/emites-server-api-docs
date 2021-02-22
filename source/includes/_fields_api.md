@@ -49,6 +49,7 @@ Contém informações gerais e metadados sobre a NF-e. Seus atributos são:
     tp_emis                     |   tpEmis     |  Sim quando Contingência     |     Numérico        |    1 dígito | 4=EPEC; <br>6= SVC-AN; <br>7=SVC-RS. <br><br>(Default: 1=Normal)
     just_contingencia           |   xJust      |  Sim quando Contingência     |     Texto e/ou número        |    15 a 256 caracteres   | Justificativa da entrada em contingência
     data_hora_contingencia      |   dhCont     |  Sim quando Contingência     |     Data    |  aaaa-mm-ddThh:mm:ss-03:00 | Data e Hora da entrada em contingência
+    indicador_intermediador | indIntermed | Não | Numérico | 1 dígito | Indicador do Intermediador/Marketplace. Seleção entre:<br>0 = Operação sem intermediador (em site ou plataforma própria);<br>1 = Operação em site ou plataforma de terceiros (intermediários/marketplace).<br>
 
 ## cliente (XML: dest)
 
@@ -166,6 +167,7 @@ Contém informações sobre os produtos contidos na NF-e. No XML, o nó  prod  �
 --------------------------------|-----------------|---------------|-------------------------|-----------------------------------|-----------------------------------------------------------
     codigo_produto              |    cProd        |  Sim          |     Texto e/ou número   |  Até 60 caracteres                |  Codificação própria da empresa. Preencher com CFOP, caso se trate de itens não relacionados com mercadorias/produtos e se o contribuinte não possuir codificação própria. Caso preenchido com CFOP, utilizar o formato "CFOP9999".
     codigo_ean                  |    cEAN         |  Não          |     Numérico            |  8, 12, 13 ou 14 dígitos          |  Código de barras. Preencher com o código de barra GTIN-8, GTIN-12, GTIN-13 ou GTIN-14 (antigos códigos EAN, UPC e DUN- 14). Não informar este campo se o produto não possuir este código.
+    codigo_barra                |    cBarra       |  Não          |     Texto               |  Até 30 caracteres                |  Código de barras diferente do padrão GTIN.
     descricao                   |    xProd        |  Sim          |     Texto               |  Até 120 caracteres               |  Descrição do produto.
     ncm                         |    NCM          |  Sim          |     Numérico            |  8 dígitos                        |  Nomenclatura comum do Mercosul. Itens específicos que não possuem NCM podem informar somente o código “00”.
     exncm                       |    -            |  Não          |     Texto               |          -                        |  Trata-se de um atributo específico para uso do engine de cálculo TaxRules da TaxWeb destinado à detalhar a característica do produto. (Ex. pauta fiscal etc).
@@ -177,6 +179,7 @@ Contém informações sobre os produtos contidos na NF-e. No XML, o nó  prod  �
     quantidade_comercial        |    qCom         |  Sim          |     Decimal             |  Até 11 dígitos, 4 casas decimais |  Quantidade de comercialização do produto.
     valor_unitario_comercial    |    vUnCom       |  Sim          |     Decimal             |  Até 11 dígitos, 4 casas decimais |  Valor unitário de comercialização.
     ean_unidade_trib            |    cEANTrib     |  Não          |     Numérico            |  8, 12, 13 ou 14 dígitos          |
+    codigo_barra_trib           |    cBarraTrib   |  Não          |     Texto               |  Até 30 caracteres                |   Código de Barras próprio ou de terceiros, que seja diferente do padrão GTIN, correspondente àquele da menor unidade comercializável identificado por Código de Barras.
     unidade_tributaria          |    uTrib        |  Sim          |     Texto               |  Até 6 caracteres                 |  Unidade tributável do produto.
     quantidade_tributaria       |    qTrib        |  Sim          |     Decimal             |  Até 11 dígitos, 4 casas decimais |  Quantidade tributável do produto.
     valor_unitario_tributario   |    vUnTrib      |  Sim          |     Decimal             |  Até 11 dígitos, 10 casas decimais|  Valor unitário de tributação.
@@ -1095,6 +1098,15 @@ Informações de comércio exterior.
     local_embarque              |  xLocExporta    |  Sim                |  Texto                  |  Até 60 caracteres                 |  Descrição do Local de Embarque ou de transposição de fronteira.
     local_despacho              |  xLocDespacho   |  Sim                |  Texto                  |  Até 60 caracteres                 |  Descrição do local de despacho.
 
+## informacoes_intermediador (XML: infIntermed)
+
+Grupo com informações sobre o intermediador/marketplace, deve ser informado quando o attributo `indicador_intermediador` for `1`.
+
+    Campo | Campo no XML | Obrigatório | Tipo |    Formato e tamanho |  Observações
+----------|--------------|-------------|------|----------------------|---------------
+    cnpj |  CNPJ | Sim |  Numérico | 14 dígitos | CNPJ do intermediador (marketplace) da Transação
+    identificador_cadastro_intermediador | idCadIntTran | Sim | Texto | Até 60 caracteres | Identificador de cadastrado no intermediador/marketplace (ex: seu nome de usuário na plataforma)
+
 ## forma_de_pagamento (XML: pag)
 
 Grupo de Detalhamento da Forma de Pagamento. No XML, o nó detPag é subitem do nó pag e pode conter uma ou mais ocorrência. Seus atributos são:
@@ -1160,3 +1172,11 @@ Grupo informativo de resposta da emissao da NF-e.
  numero_protocolo | nProt | - | - | - | Número do Protocolo da NF-e
  chave_acesso | chNFe | - | - | - | Chave de Acesso da NF-e
  erros | - | - | - | - | Lista erros da emissão, podendo ser uma mensagem de rejeição da SEFAZ ou uma lista de erros de validação de Schema
+
+## remote_id (XML: N/A)
+
+Identificador único da requisição gerado pelo requisitante para controle próprio. 
+
+    Campo                       |  Campo no XML   |  Obrigatório        |     Tipo                |    Formato e tamanho               |  Observações
+--------------------------------|-----------------|---------------------|-------------------------|------------------------------------|-----------------------------------------------------------
+ remote_id | - | Não | Texto | - | O campo aceita apenas caracteres ou caracteres juntamente com dígitos numéricos e/ou caracteres especiais, não devendo ser informado apenas números.
