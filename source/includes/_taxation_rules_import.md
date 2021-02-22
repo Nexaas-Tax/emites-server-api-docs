@@ -202,11 +202,12 @@ Os seguintes atributos de condição podem ser enviados pelo CSV:
  `inscricao_suframa` | SUFRAMA | Não | Não | Sem restrições
  `situacao_fiscal` | Situação fiscal | Sim | Sim | Sem restrições
  `codigo_beneficio_fiscal` | Código de benefício fiscal | Sim | Sim | Sem restrições
+ `indicador_presenca` | Indicador de presença do comprador no estabelecimento comercial no momento da operação | Sim | Sim | Veja **Tabela de valores para Indicador de presença do comprador no estabelecimento comercial**
  `codigo_produto` | Código do produto | Sim | Sim | Sem restrições
  `vigencia_start` | Data inicial de vigência | Não | Não | Data válida no formato `dd/mm/aaaa`
  `vigencia_end` | Data final de vigência | Não | Não | Data válida no formato `dd/mm/aaaa`
 
-**Obs.**: O atributo `codigo_do_produto` pode ser omitido automaticamente durante a importação mesmo quando presente no CSV. O `codigo_do_produto` só **NÃO SERÁ OMITIDO** quando existir uma regra para a mesma natureza de operação e memso grupo tributário com condições diferentes mas consequências potencialmente conflitantes, de moto que a presença do atributo é relevante para evitar o enquadramento inadequado em determinados cenários.
+**Obs.**: O atributo `codigo_do_produto` pode ser omitido automaticamente durante a importação mesmo quando presente no CSV. O `codigo_do_produto` só **NÃO SERÁ OMITIDO** quando existir uma regra para a mesma natureza de operação e mesmo grupo tributário com condições diferentes mas consequências potencialmente conflitantes, de modo que a presença do atributo é relevante para evitar o enquadramento inadequado em determinados cenários.
 
 #### Tabela de valores para Aplicação do produto
 
@@ -298,6 +299,17 @@ Os seguintes atributos de condição podem ser enviados pelo CSV:
  019 | TaxWeb - ISENLF
  020 | ICMS Substituto Tributário
  021 | ICMS Substituído Tributário
+
+#### Tabela de valores para Indicador de presença do comprador no estabelecimento comercial
+
+ Valor | Descrição
+-------|----------
+ 0 | Não se aplica
+ 1 | Operação presencial
+ 2 | Operação não presencial, pela Internet
+ 3 | Operação não presencial, Teleatendimento
+ 4 | NFC-e em operação com entrega a domicílio
+ 9 | Operação não presencial, outros
 
 ### Critérios para os atributos de condição
 
